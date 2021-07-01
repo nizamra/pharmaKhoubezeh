@@ -1,0 +1,4 @@
+go go finals
+// tamp
+//foo
+bar
