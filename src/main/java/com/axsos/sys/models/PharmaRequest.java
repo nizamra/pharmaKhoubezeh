@@ -29,6 +29,27 @@ public class PharmaRequest {
 	@Column(updatable = false)
 	private Date createdAt;
 
-	public PharmaRequest() {
+	public PharmaRequest() {}
+
+	public User getRequester() {
+		return requester;
 	}
+
+	public void setRequester(User requester) {
+		this.requester = requester;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	
 }

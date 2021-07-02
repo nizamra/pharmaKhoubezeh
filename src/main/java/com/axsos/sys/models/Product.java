@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -39,4 +41,51 @@ public class Product {
 	private List<PharmaRequest> pharmaRequests;
 
 	public Product() {}
+	
+	@PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getOwnerOfProduct() {
+		return ownerOfProduct;
+	}
+
+	public void setOwnerOfProduct(User ownerOfProduct) {
+		this.ownerOfProduct = ownerOfProduct;
+	}
+
+	public List<PharmaRequest> getPharmaRequests() {
+		return pharmaRequests;
+	}
+
+	public void setPharmaRequests(List<PharmaRequest> pharmaRequests) {
+		this.pharmaRequests = pharmaRequests;
+	}
+
+	public Long getId() {
+		return id;
+	}
+    
+    
 }
