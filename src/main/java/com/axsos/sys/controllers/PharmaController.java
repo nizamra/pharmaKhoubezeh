@@ -33,6 +33,10 @@ public class PharmaController {
         model.addAttribute("name", name);
         return "thymeleaf/indexx";
     }
+	@GetMapping("/pic")
+	String picPage() {
+		return "picpic.jsp";
+	}
 	@RequestMapping("/registration")
 	public String registerForm(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model) {

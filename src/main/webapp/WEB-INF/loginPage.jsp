@@ -29,7 +29,7 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <input type="submit" value="Login!" />
 	</form>
-	
-	<img alt="sama ya hawa" src="sama.jpg" />
+	<br><br>
+	<img alt="sama ya hawa" src="/imgs/sama.jpg" />
 </body>
 </html>

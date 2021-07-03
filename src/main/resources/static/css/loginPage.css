@@ -3,7 +3,8 @@ body {
 }
 
 .try {
-	color:red;
+	color:rgb(0, 255, 64);
+	background-color:#ff8080;
 }
 h1{
 	color: blue;
