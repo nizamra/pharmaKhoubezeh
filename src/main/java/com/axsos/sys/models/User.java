@@ -67,7 +67,7 @@ public class User {
 	@OneToMany(mappedBy = "ownerOfProduct", fetch = FetchType.LAZY)
 	private List<Product> productsOwned;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> userRole;
 

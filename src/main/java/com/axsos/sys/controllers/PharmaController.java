@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,23 +28,36 @@ public class PharmaController {
 		this.userValidator = userValidator;
 	}
 
-    
+	@GetMapping("/thymeleaf")
+    String thymeleafPage(Model model,@RequestParam String name) {
+        model.addAttribute("name", name);
+        return "thymeleaf/indexx";
+    }
+	@RequestMapping("/registration")
+	public String registerForm(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, Model model) {
+		if (error != null) {
+			model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
+		}
+		if (logout != null) {
+			model.addAttribute("logoutMessage", "Logout Successful!");
+		}
+		return "registrationPage.jsp";
+	}
+//	@RequestMapping("/registration")
+//	public String registerForm(@Valid @ModelAttribute("user") User user) {
+//		return "registrationPage.jsp";
+//	}
+	
     @PostMapping("/registration")
     public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
             return "registrationPage.jsp";
         }
-        
         pharmaServer.saveWithUserRole(user);
         return "redirect:/login";
     }
-    
-    
-	@RequestMapping("/registration")
-	public String registerForm(@Valid @ModelAttribute("user") User user) {
-		return "registrationPage.jsp";
-	}
 
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Principal principal, Model model) {

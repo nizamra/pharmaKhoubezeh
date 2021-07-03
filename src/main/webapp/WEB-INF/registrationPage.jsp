@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,44 +9,52 @@
 <title>Registration Page</title>
 </head>
 <body>
-    <h1>Register!</h1>
-    
-    <p><form:errors path="user.*"/></p>
-    
-    <form:form method="POST" action="/registration" modelAttribute="user">
-        <p>
-            <form:label path="username">Username:</form:label>
-            <form:input path="username"/>
-        </p>
-        <p>
-            <form:label path="firstName">firstName:</form:label>
-            <form:input path="firstName"/>
-        </p>
-        <p>
-            <form:label path="moddleName">moddleName:</form:label>
-            <form:input path="moddleName"/>
-        </p>
-        <p>
-            <form:label path="lastName">lastName:</form:label>
-            <form:input path="lastName"/>
-        </p>
-        <p>
-            <form:label path="email">email:</form:label>
-            <form:input path="email"/>
-        </p>
-        <p>
-            <form:label path="location">location:</form:label>
-            <form:input path="location"/>
-        </p>
-        <p>
-            <form:label path="password">Password:</form:label>
-            <form:password path="password"/>
-        </p>
-        <p>
-            <form:label path="passwordConfirmation">Password Confirmation:</form:label>
-            <form:password path="passwordConfirmation"/>
-        </p>
-        <input type="submit" value="Register!"/>
-    </form:form>
+	<c:if test="${logoutMessage != null}">
+		<c:out value="${logoutMessage}"></c:out>
+	</c:if>
+	<h1>Register!</h1>
+	<c:if test="${errorMessage != null}">
+		<c:out value="${errorMessage}"></c:out>
+	</c:if>
+	<p>
+		<form:errors path="user.*" />
+	</p>
+
+	<form:form method="POST" action="/registration">
+		<p>
+			<label for="firstName" class="try">firstName</label> 
+			<input type="text" id="firstName" name="firstName" />
+		</p>
+		<p>
+			<label for="moddleName" class="try">moddleName</label> 
+			<input type="text" id="moddleName" name="moddleName" />
+		</p>
+		<p>
+			<label for="lastName" class="try">lastName</label> 
+			<input type="text" id="lastName" name="lastName" />
+		</p>
+		<p>
+			<label for="username" class="try">username</label> 
+			<input type="text" id="username" name="username" />
+		</p>
+		<p>
+			<label for="email" class="try">email</label> 
+			<input type="email" id="email" name="email" />
+		</p>
+		<p>
+			<label for="location" class="try">location</label> 
+			<input type="text" id="location" name="location" />
+		</p>
+		<p>
+			<label for="password" class="try">password</label> 
+			<input type="password" id="password" name="password" />
+		</p>
+		<p>
+			<label for="passwordConfirmation" class="try">passwordConfirmation</label> 
+			<input type="password" id="passwordConfirmation" name="passwordConfirmation" />
+		</p>
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /> <input type="submit" value="Register!" />
+	</form:form>
 </body>
 </html>
