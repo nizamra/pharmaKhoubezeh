@@ -7,54 +7,80 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registration Page</title>
-</head>
-<body>
-	<c:if test="${logoutMessage != null}">
-		<c:out value="${logoutMessage}"></c:out>
-	</c:if>
-	<h1>Register!</h1>
-	<c:if test="${errorMessage != null}">
-		<c:out value="${errorMessage}"></c:out>
-	</c:if>
-	<p>
-		<form:errors path="user.*" />
-	</p>
+<link rel="stylesheet" type="text/css" href="/css/loginPage.css">
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<form:form method="POST" action="/registration">
-		<p>
-			<label for="firstName" class="try">firstName</label> 
-			<input type="text" id="firstName" name="firstName" />
-		</p>
-		<p>
-			<label for="moddleName" class="try">moddleName</label> 
-			<input type="text" id="moddleName" name="moddleName" />
-		</p>
-		<p>
-			<label for="lastName" class="try">lastName</label> 
-			<input type="text" id="lastName" name="lastName" />
-		</p>
-		<p>
-			<label for="username" class="try">username</label> 
-			<input type="text" id="username" name="username" />
-		</p>
-		<p>
-			<label for="email" class="try">email</label> 
-			<input type="email" id="email" name="email" />
-		</p>
-		<p>
-			<label for="location" class="try">location</label> 
-			<input type="text" id="location" name="location" />
-		</p>
-		<p>
-			<label for="password" class="try">password</label> 
-			<input type="password" id="password" name="password" />
-		</p>
-		<p>
-			<label for="passwordConfirmation" class="try">passwordConfirmation</label> 
-			<input type="password" id="passwordConfirmation" name="passwordConfirmation" />
-		</p>
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" /> <input type="submit" value="Register!" />
-	</form:form>
-</body>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="img js-fullheight" style="background-image: url(imgs/pharm1.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h1 style="color:white;">Pharma KHobeza</h1>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Register</h3>
+		      	<form action="#" class="signin-form">
+		      		<div class="form-group">
+		      			<input type="text" class="form-control" placeholder="username" required>
+		      		</div>
+	            <div class="form-group">
+	              <input  type="email" class="form-control" placeholder="Email" required>
+	              
+	            </div>
+	            <div class="form-group">
+		      			<select id="cars" class="form-control" name="cars"    >
+		      				<option  value="volvo" selected>location</option>
+    						
+    						<option value="saab">Bethlehem</option>
+    						<option value="fiat">Ramallah</option>
+    						<option value="audi">Tubas</option>
+    						<option value="audi">Nablus</option>
+    						<option value="audi">Hebron</option>
+    						<option value="audi">Jenin</option>
+    						<option value="audi">Tulkarm</option>
+    						<option value="audi">Jursalem</option>
+  						</select>
+		      		</div>
+	             <div class="form-group">
+	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
+	             
+	            </div>
+	             <div class="form-group">
+	              <input id="password-field" type="password" class="form-control" placeholder="Confirm Password" name="passwordConfirmation" required>
+	             
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+	            </div>
+	            
+	          </form>
+	          <p class="w-100 text-center">&mdash;  Have an account? &mdash;</p>
+	          <div class="social d-flex text-center">
+	         
+	          	<a href="/loginPage" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Sign in</a>
+	          	
+	          </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
 </html>
