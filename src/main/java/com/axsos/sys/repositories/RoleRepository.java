@@ -10,5 +10,5 @@ import com.axsos.sys.models.Role;
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Long> {
 	List<Role> findAll();
-	List<Role> findByName(String name);
+	List<Role> findByName(String string);
 }

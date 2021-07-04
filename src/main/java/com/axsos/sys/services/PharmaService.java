@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.axsos.sys.models.Category;
 import com.axsos.sys.models.PharmaRequest;
 import com.axsos.sys.models.Product;
+import com.axsos.sys.models.Role;
 import com.axsos.sys.models.User;
 import com.axsos.sys.repositories.PharmaRequestRepository;
 import com.axsos.sys.repositories.ProductRepository;
@@ -67,5 +68,53 @@ public class PharmaService {
     
     public User findByUsername(String username) {
         return repoUser.findByUsername(username);
+    }
+    public User findByEmail(String email) {
+    	return repoUser.findByEmail(email);
+    }
+    public void updateUser(User user) {
+    	repoUser.save(user);
+    	
+    }
+    public void createUser(User user) {
+    	repoUser.save(user);
+    }
+    public User getUserById(Long id) {
+    	return repoUser.findById(id).orElse(null);
+    }
+    
+    public void deleteById(Long id) {
+    	repoUser.deleteById(id);
+    }
+    
+    
+    public boolean checkIfAdmin(User user) {
+    	List<Role> roles = user.getUserRole();
+    	for (int i = 0 ; i < roles.size(); i++) {
+    		if(roles.get(i).getName().equals("ROLE_ADMIN")) {
+    			return true;
+    		}
+    	}
+    	return false;
+    	
+    }
+    
+    public List<Role> findAll(){
+    	return (List<Role>) repoRole.findAll();
+    }
+    
+    public Role findByName(String name) {
+    	return (Role) repoRole.findByName(name);
+    }
+    
+    public void createRole(Role role) {
+    	repoRole.save(role);
+    }
+    public void updateRole(Role role) {
+    	repoRole.save(role);
+    }
+    public void destroyRole(Long id) {
+    	repoRole.deleteById(id);
+    	
     }
 }

@@ -2,6 +2,7 @@ package com.axsos.sys.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
 import com.axsos.sys.models.Product;
+import com.axsos.sys.models.Role;
 import com.axsos.sys.models.User;
 import com.axsos.sys.services.PharmaService;
 import com.axsos.sys.validator.UserValidator;
@@ -58,8 +61,13 @@ public class PharmaController {
         if (result.hasErrors()) {
             return "registrationPage.jsp";
         }
-        pharmaServer.saveWithUserRole(user);
-        return "redirect:/login";
+        else if(pharmaServer.findByName("ROLE_ADMIN").getUsers().size() < 1) {
+        	pharmaServer.saveUserWithAdminRole(user);
+        	return "redirect:/login";
+        } else {
+            pharmaServer.saveWithUserRole(user);
+            return "redirect:/login";
+        }
     }
 
 	@RequestMapping("/login")
@@ -115,4 +123,51 @@ public class PharmaController {
 		model.addAttribute("product", pharmaServer.findAllProducts());
 		return "thymeleaf/product";
 	}
+	@RequestMapping(value= {"/dashboard"})
+	public String showHome(Principal principal , Model model) {
+		String email = principal.getName();
+		User user = pharmaServer.findByEmail(email);
+		model.addAttribute("currentUser", pharmaServer.findByEmail(email));
+		pharmaServer.updateUser(user);
+		if (pharmaServer.checkIfAdmin(user)) {
+			return "redirect:/admin";
+		} else {
+			return "redirect:/home";
+		}
+	}
+	
+	@RequestMapping("/admin")
+	public String displayAdmin(Principal principal,Model model) {
+		String email = principal.getName();
+		model.addAttribute("currentUser", pharmaServer.findByEmail(email));
+		model.addAttribute("all",pharmaServer.findAllUsers());
+		return "adminPage.jsp";
+	}
+	
+	@RequestMapping("user/admin/{id}")
+	public String makeAdmin(@PathVariable("id") Long id) {
+		User user = pharmaServer.getUserById(id);
+		List<Role> roles = user.getUserRole();
+		roles.add(pharmaServer.findByName("ROLE_ADMIN"));
+		pharmaServer.updateUser(user);
+		return "redirect:/admin";
+		
+		
+	}
+	
+	
+	
+	@RequestMapping("/user/demote/{id}")
+	public String demoteAdmin(@PathVariable("id") Long id) {
+		User user = pharmaServer.getUserById(id);
+		List<Role> roles = user.getUserRole();
+		for (int i = 0 ; i < roles.size)
+	}
+	
+	
+	
+	
+	
+	
+	
 }
