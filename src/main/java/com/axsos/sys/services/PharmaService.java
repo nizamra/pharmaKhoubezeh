@@ -2,9 +2,10 @@ package com.axsos.sys.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+import com.axsos.sys.models.Category;
 import com.axsos.sys.models.PharmaRequest;
 import com.axsos.sys.models.Product;
 import com.axsos.sys.models.User;
@@ -35,14 +36,20 @@ public class PharmaService {
 	public List<PharmaRequest> findAllRequests() {
 		return repoPhReq.findAll();}
 	
-	// 1
+	public List<Product> searchProduct(String search) {
+		return repoProd.findBySymptomContaining(search);
+	}
+	
+	public List<Product> findCategory(Category category) {
+		return repoProd.findByCategory(category);
+	}
+	
     public void saveWithUserRole(User user) {
         user.setPassword(bCEncoder.encode(user.getPassword()));
         user.setUserRole(repoRole.findByName("ROLE_USER"));
         repoUser.save(user);
     }
      
-     // 2 
     public void saveUserWithAdminRole(User user) {
         user.setPassword(bCEncoder.encode(user.getPassword()));
         user.setUserRole(repoRole.findByName("ROLE_ADMIN"));
@@ -52,9 +59,12 @@ public class PharmaService {
     	user.setPassword(bCEncoder.encode(user.getPassword()));
     	user.setUserRole(repoRole.findByName("ROLE_PHARMACIST"));
     	repoUser.save(user);
-    }    
+    }  
     
-    // 3
+    public Product saveProduct(Product product) {
+    	return repoProd.save(product);
+    }
+    
     public User findByUsername(String username) {
         return repoUser.findByUsername(username);
     }

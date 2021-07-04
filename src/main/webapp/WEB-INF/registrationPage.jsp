@@ -21,20 +21,9 @@
 	</p>
 
 	<form:form method="POST" action="/registration">
+
 		<p>
-			<label for="firstName" class="try">firstName</label> 
-			<input type="text" id="firstName" name="firstName" />
-		</p>
-		<p>
-			<label for="moddleName" class="try">moddleName</label> 
-			<input type="text" id="moddleName" name="moddleName" />
-		</p>
-		<p>
-			<label for="lastName" class="try">lastName</label> 
-			<input type="text" id="lastName" name="lastName" />
-		</p>
-		<p>
-			<label for="username" class="try">username</label> 
+			<label for="username" class="try">Name:</label> 
 			<input type="text" id="username" name="username" />
 		</p>
 		<p>

@@ -4,6 +4,24 @@
     <title>Hello</title>
 </head>
 <body>
-    THYMELEAF PAGE: <p th:text="${name}"></p>
+    <form th:action="@{/products/save}"
+    th:object="${product}" method="post"
+    enctype="multipart/form-data"
+    >
+    
+    <div>
+    <label>product name:</label> 
+    <input type="text" name="name">
+    <label>product desc:</label>
+    <input type="text" name="description">
+    <label>symptoms</label>
+    <input type="text" name="symptom">
+    <label>product price</label>
+    <input type="number" name="price">
+    <label>Photos: </label>
+    <input type="file" name="image" accept="image/png, image/jpeg" />
+    </div>
+    	<input type="submit" value="submit">
+</form>
 </body>
 </html>

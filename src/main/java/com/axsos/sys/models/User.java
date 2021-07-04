@@ -28,18 +28,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "firstName is required!")
-	@Size(min = 3, max = 30, message = "firstName must be between 3 and 30 characters")
-	private String firstName;
-
-	@NotEmpty(message = "moddleName is required!")
-	@Size(min = 3, max = 30, message = "moddleName must be between 3 and 30 characters")
-	private String moddleName;
-
-	@NotEmpty(message = "lastName is required!")
-	@Size(min = 3, max = 30, message = "lastName must be between 3 and 30 characters")
-	private String lastName;
-	
 	@NotEmpty
 	@Size(min = 3, max = 30)
 	private String username;
@@ -51,8 +39,6 @@ public class User {
 	@NotEmpty(message = "location is required!")
 	@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters")
 	private String location;
-
-	private String googleLocation;
 
 	@NotEmpty
 	@Size(min = 8, max = 128)
@@ -86,30 +72,6 @@ public class User {
         this.updatedAt = new Date();
     }
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getModdleName() {
-		return moddleName;
-	}
-
-	public void setModdleName(String moddleName) {
-		this.moddleName = moddleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -124,14 +86,6 @@ public class User {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public String getGoogleLocation() {
-		return googleLocation;
-	}
-
-	public void setGoogleLocation(String googleLocation) {
-		this.googleLocation = googleLocation;
 	}
 
 	public String getPassword() {
