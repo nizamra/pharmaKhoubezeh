@@ -10,9 +10,18 @@
 <title>Pic Page</title>
 </head>
 <body>
-    
-    <h1>Hello All</h1>
-    <img alt="sama ya hawa" src="/imgs/sama.jpg" />
-    
+    <form th:action="@{/users/save}"
+    th:object="${user}" method="post"
+    enctype="multipart/form-data"
+    >
+    ...
+    <div>
+     
+    <label>Photos: </label>
+    <input type="file" name="image" accept="image/png, image/jpeg" />
+     
+    </div>
+    ...
+</form>
 </body>
 </html>

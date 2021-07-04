@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,12 +24,20 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotEmpty(message="name is required!")
 	@Size(min=7, max=66, message="name must be between 7 and 66 characters")
 	private String name;
-	@NotEmpty(message="description is required!")
+	@Column(nullable = true, length = 64)
+	private String photos;
+	@Transient
+	public String getPhotosImagePath() {
+		if (photos == null || id == null) return null;   
+	        return "/product-photos/" + id + "/" + photos;
+	    }
 	@Size(min=12, max=222, message="description must be between 12 and 222 characters")
 	private String description;
+	@Size(min=3,message="Symptoms must be at least 3 characters!")
+	private String symptom;
+	private String category;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -85,6 +93,51 @@ public class Product {
 
 	public Long getId() {
 		return id;
+	}
+
+
+	public String getSymptom() {
+		return symptom;
+	}
+
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
     
     
