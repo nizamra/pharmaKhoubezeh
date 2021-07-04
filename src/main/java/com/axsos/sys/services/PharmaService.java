@@ -3,6 +3,9 @@ package com.axsos.sys.services;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,9 @@ public class PharmaService {
 	private final ProductRepository repoProd;
 	private final PharmaRequestRepository repoPhReq;
 	private final BCryptPasswordEncoder bCEncoder;
-
+	@Autowired
+	private JavaMailSender jMS;
+	
 	public PharmaService(UserRepository x, ProductRepository y, PharmaRequestRepository z, BCryptPasswordEncoder w, RoleRepository uv) {
 		repoUser = x;
 		repoProd = y;
@@ -31,6 +36,17 @@ public class PharmaService {
 		bCEncoder = w;
 		repoRole = uv;
 	}
+	
+	public void sendingMail(String sendTo, String messageBody, String messageTitle) {
+		SimpleMailMessage sMM = new SimpleMailMessage();
+		sMM.setFrom("pharma.khoubezeh@gmail.com");
+		sMM.setTo(sendTo);
+		sMM.setSubject(messageTitle);
+		sMM.setText(messageBody);
+		jMS.send(sMM);
+	}
+	
+	
 	public List<User> findAllUsers() {
 		return repoUser.findAll();}
 	public List<Product> findAllProducts() {
