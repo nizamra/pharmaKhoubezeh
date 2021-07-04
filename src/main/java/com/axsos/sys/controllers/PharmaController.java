@@ -44,7 +44,7 @@ public class PharmaController {
 
 	@RequestMapping("/registration")
 	public String registerForm(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model) {
+			@RequestParam(value = "logout", required = false) String logout, Model model,@ModelAttribute("user") User user) {
 		if (error != null) {
 			model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
 		}
@@ -72,7 +72,7 @@ public class PharmaController {
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model) {
+			@RequestParam(value = "logout", required = false) String logout, Model model,@ModelAttribute("user") User user) {
 		if (error != null) {
 			model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
 		}
@@ -82,12 +82,6 @@ public class PharmaController {
 		return "loginPage.jsp";
 	}
 	
-	@RequestMapping("/admin")
-    public String adminPage(Principal principal, Model model) {
-        String username = principal.getName();
-        model.addAttribute("currentUser", pharmaServer.findByUsername(username));
-        return "adminPage.jsp";
-    }
 	
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Principal principal, Model model) {
@@ -151,8 +145,6 @@ public class PharmaController {
 		roles.add(pharmaServer.findByName("ROLE_ADMIN"));
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
-		
-		
 	}
 	
 	
@@ -161,13 +153,47 @@ public class PharmaController {
 	public String demoteAdmin(@PathVariable("id") Long id) {
 		User user = pharmaServer.getUserById(id);
 		List<Role> roles = user.getUserRole();
-		for (int i = 0 ; i < roles.size)
+		for (int i = 0 ; i < roles.size();i++) {
+			if(roles.get(i).getName().equals("ROLE_ADMIN")) {
+				roles.remove(i);
+			}
+				
+		}
+		pharmaServer.updateUser(user);
+		return "redirect:/admin";
+	}
+	
+	
+	@RequestMapping("user/pharmacy/admin/{id}")
+	public String makePharmacy(@PathVariable("id") Long id) {
+		User user = pharmaServer.getUserById(id);
+		List<Role> roles = user.getUserRole();
+		roles.add(pharmaServer.findByName("ROLE_PHARMACY"));
+		pharmaServer.updateUser(user);
+		return "redirect:/admin";
 	}
 	
 	
 	
+	@RequestMapping("/user/pharmacy/demote/{id}")
+	public String demotePharmacy(@PathVariable("id") Long id) {
+		User user = pharmaServer.getUserById(id);
+		List<Role> roles = user.getUserRole();
+		for (int i = 0 ; i < roles.size();i++) {
+			if(roles.get(i).getName().equals("ROLE_PHARMACY")) {
+				roles.remove(i);
+			}
+				
+		}
+		pharmaServer.updateUser(user);
+		return "redirect:/admin";
+	}
 	
-	
+	@RequestMapping("/user/delete/{id}")
+	public String deleteUser(@PathVariable("id") Long id) {
+		pharmaServer.deleteById(id);
+		return "redirect:/admin";
+	}
 	
 	
 }

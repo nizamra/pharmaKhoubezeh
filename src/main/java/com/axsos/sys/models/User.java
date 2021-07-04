@@ -18,7 +18,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,19 +27,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty
 	@Size(min = 3, max = 30)
 	private String username;
 
-	@NotEmpty(message = "Email is required!")
 	@Email(message = "Please enter a valid email!")
 	private String email;
 
-	@NotEmpty(message = "location is required!")
 	@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters")
 	private String location;
 
-	@NotEmpty
 	@Size(min = 8, max = 128)
 	private String password;
 
@@ -140,7 +135,15 @@ public class User {
 		this.username = username;
 	}
 	
-	
+	public boolean checkIfAdmin() {
+		List<Role> roles = this.getUserRole();
+		for( int i = 0; i < roles.size(); i++) {
+			if(roles.get(i).getName().equals("ROLE_ADMIN")) {
+				return true;
+			}
+		}
+		return false; 			
+}
     
     
 }

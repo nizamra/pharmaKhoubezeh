@@ -29,45 +29,41 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Register</h3>
-		      	<form action="#" class="signin-form">
+		      	<form:form action="/registration" modelAttribute="user" method="POST" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="username" required>
+		      			<form:errors path="username"/>
+		      			<form:input path="username" type="text" class="form-control" placeholder="username"/>
 		      		</div>
 	            <div class="form-group">
-	              <input  type="email" class="form-control" placeholder="Email" required>
-	              
+				  <form:errors path="email"/>
+	              <form:input type="email" class="form-control" path="email" placeholder="Email"/>
 	            </div>
 	            <div class="form-group">
-		      			<select id="cars" class="form-control" name="cars"    >
-		      				<option  value="volvo" selected>location</option>
-    						
-    						<option value="saab">Bethlehem</option>
-    						<option value="fiat">Ramallah</option>
-    						<option value="audi">Tubas</option>
-    						<option value="audi">Nablus</option>
-    						<option value="audi">Hebron</option>
-    						<option value="audi">Jenin</option>
-    						<option value="audi">Tulkarm</option>
-    						<option value="audi">Jursalem</option>
-  						</select>
+		      			<form:errors path="location"/>
+						<form:select class="form-select padd" path="location">
+							<option selected>Location</option>
+								<c:forEach items="${ locations }" var="locate">
+							<option value="${ locate }">${ locate}</option>
+						</c:forEach>
+						</form:select>
 		      		</div>
 	             <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
-	             
+	              <form:errors path="password"/>
+	              <form:input id="password-field" path="password" type="password" class="form-control" placeholder="Password" />
 	            </div>
 	             <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Confirm Password" name="passwordConfirmation" required>
-	             
+	              <form:errors path="passwordConfirmation"/>
+	              <form:input id="password-field" path="passwordConfirmation" type="password" class="form-control" placeholder="Confirm Password" name="passwordConfirmation"/>
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
 	            </div>
 	            
-	          </form>
+	          </form:form>
 	          <p class="w-100 text-center">&mdash;  Have an account? &mdash;</p>
 	          <div class="social d-flex text-center">
 	         
-	          	<a href="/loginPage" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Sign in</a>
+	          	<a href="/login" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Sign in</a>
 	          	
 	          </div>
 		      </div>

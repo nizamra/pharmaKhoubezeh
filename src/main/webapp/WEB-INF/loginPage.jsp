@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,13 +31,14 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
-		      	<form action="#" class="signin-form">
+		      	<form:form action="/login" modelAttribute="user" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Username" required>
+		      			<form:errors path="username"/>
+		      			<form:input type="text" path="username" class="form-control" placeholder="Username"/>
 		      		</div>
 	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	              <form:errors path="password"/>
+	              <form:input path="password" id="password-field" type="password" class="form-control" placeholder="Password"/>
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
@@ -52,7 +54,7 @@
 									<a href="#" style="color: #fff">Forgot Password</a>
 								</div>
 	            </div>
-	          </form>
+	          </form:form>
 	          <p class="w-100 text-center">&mdash; Don't Have an account? &mdash;</p>
 	          <div class="social d-flex text-center">
 	         

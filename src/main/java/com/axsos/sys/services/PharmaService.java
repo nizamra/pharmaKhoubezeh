@@ -1,5 +1,6 @@
 package com.axsos.sys.services;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,18 +48,18 @@ public class PharmaService {
 	
     public void saveWithUserRole(User user) {
         user.setPassword(bCEncoder.encode(user.getPassword()));
-        user.setUserRole(repoRole.findByName("ROLE_USER"));
+        user.setUserRole(Arrays.asList(repoRole.findByName("ROLE_USER")));
         repoUser.save(user);
     }
      
     public void saveUserWithAdminRole(User user) {
         user.setPassword(bCEncoder.encode(user.getPassword()));
-        user.setUserRole(repoRole.findByName("ROLE_ADMIN"));
+        user.setUserRole(Arrays.asList(repoRole.findByName("ROLE_ADMIN")));
         repoUser.save(user);
     }    
     public void saveUserWithPharmacistRole(User user) {
     	user.setPassword(bCEncoder.encode(user.getPassword()));
-    	user.setUserRole(repoRole.findByName("ROLE_PHARMACIST"));
+    	user.setUserRole(Arrays.asList(repoRole.findByName("ROLE_PHARMACIST")));
     	repoUser.save(user);
     }  
     
