@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
+<link rel="stylesheet" type="text/css" href="/css/loginPage.css">
 </head>
 <body>
+	<a href="/registration"> Register </a>
 	<c:if test="${logoutMessage != null}">
 		<c:out value="${logoutMessage}"></c:out>
 	</c:if>
@@ -17,7 +19,7 @@
 	</c:if>
 	<form method="POST" action="/login">
 		<p>
-			<label for="username">Username</label> <input type="text"
+			<label for="username" class="try">Username</label> <input type="text"
 				id="username" name="username" />
 		</p>
 		<p>
@@ -27,5 +29,7 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <input type="submit" value="Login!" />
 	</form>
+	<br><br>
+	<img alt="sama ya hawa" src="/imgs/sama.jpg" />
 </body>
 </html>

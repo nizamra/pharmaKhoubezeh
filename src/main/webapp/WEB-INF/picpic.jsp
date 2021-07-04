@@ -6,14 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<link href="/css/loginPage.css" rel="stylesheet">
+<title>Pic Page</title>
 </head>
 <body>
-    <h1>Welcome Page <c:out value="${currentUser.username}"></c:out></h1>
-        
-    <form id="logoutForm" method="POST" action="/logout">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type="submit" value="Logout!" />
-    </form>
+    
+    <h1>Hello All</h1>
+    <img alt="sama ya hawa" src="/imgs/sama.jpg" />
+    
 </body>
 </html>
