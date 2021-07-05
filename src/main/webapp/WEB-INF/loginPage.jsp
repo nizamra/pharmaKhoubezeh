@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h1 style="color:white;">Pharma KHobeza</h1>
+					<h1 style="color:white;">Pharma Khobeza</h1>
 				</div>
 			</div>
 			<div class="row justify-content-center">
