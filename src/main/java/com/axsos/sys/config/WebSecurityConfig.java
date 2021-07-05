@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             authorizeRequests()
                 .antMatchers("/static/**", "/registration").permitAll()
                 .antMatchers("/css/**", "/imgs/**").permitAll()
+                .antMatchers("/tokenpost").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
@@ -39,7 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+             .and()
+             	.cors().and().csrf().disable();
     }
 
 	@Autowired

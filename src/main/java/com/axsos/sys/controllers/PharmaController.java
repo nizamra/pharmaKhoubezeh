@@ -2,7 +2,9 @@ package com.axsos.sys.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -33,6 +36,7 @@ import com.axsos.sys.validator.UserValidator;
 public class PharmaController {
 	private final PharmaService pharmaServer;
 	private UserValidator userValidator;
+	public String randomNums="";
 
 	public PharmaController(PharmaService xXx, UserValidator userValidator) {
 		pharmaServer = xXx;
@@ -65,10 +69,10 @@ public class PharmaController {
 			return "registrationPage.jsp";
 		} else if (pharmaServer.findByName("ROLE_ADMIN").getUsers().size() < 1) {
 			pharmaServer.saveUserWithAdminRole(user);
-			return "redirect:/login";
+			return "redirect:/token";
 		} else {
 			pharmaServer.saveWithUserRole(user);
-			return "redirect:/login";
+			return "redirect:/token";
 		}
 	}
 
@@ -89,10 +93,14 @@ public class PharmaController {
 	public String home(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		model.addAttribute("currentUser", pharmaServer.findByUsername(username));
-
-		return "homePage.jsp";
-
+		User currentUser = pharmaServer.findByUsername(username);
+		
+		if (currentUser.getVerified()==true) {
+			model.addAttribute("currentUser", currentUser);
+			return "homePage.jsp";
+		}else {
+			return "redirect:/token";
+		}
 	}
 
 	@RequestMapping("/search")
@@ -102,9 +110,50 @@ public class PharmaController {
 	}
 	@RequestMapping("/sendmail/{mailTo}")
 	public String sendEmail(@PathVariable("mailTo") String reciever) {
-		System.out.println("sending new mail to... "+reciever);
-		pharmaServer.sendingMail(reciever, "Hello From pharma khoubezeh team to you all", "Spreading Love");
+		String message = "Hello From pharma khoubezeh team to you all \n Your verification token is: ";
+		randomNums="";
+        Random r = new Random();
+        for (byte i = 0; i<4 ; i++){
+        	randomNums=randomNums+(r.nextInt(9));
+        }
+        message=message+randomNums;
+		System.out.println("sending new mail to... "+reciever+message);
+//		pharmaServer.sendingMail(reciever, message, "Spreading Love");
+		return "redirect:/token";
+	}
+	@RequestMapping("/token")
+	public String show() {
+		String message = "Hello From pharma khoubezeh team to you all \n Your verification token is: ";
+		randomNums="";
+        Random r = new Random();
+        for (byte i = 0; i<4 ; i++){
+        	randomNums=randomNums+(r.nextInt(9));
+        }
+        message=message+randomNums;
+        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+        
+        String reciever = currentUser.getEmail();
+		System.out.println("sending new mail to... "+reciever+message);
+		pharmaServer.sendingMail(reciever, message, "Spreading Love");
+		return "gettoken.jsp";
+	}
+
+	@PostMapping("/tokenpost")
+	public String gettingshow(@RequestParam(name = "tokenFromUser") String tokenFromUser) {
+		if(tokenFromUser.equals(randomNums)) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String username = authentication.getName();
+			User currentUser = pharmaServer.findByUsername(username);
+			currentUser.setVerified(true);
+			pharmaServer.updateUser(currentUser);
+			return "redirect:/";
+	}else {
+		System.out.println("going out of tamam... ");
 		return "redirect:/";
+	}
 	}
 	
 	@PostMapping("/products/save")

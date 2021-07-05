@@ -35,6 +35,8 @@ public class User {
 
 	@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters")
 	private String location;
+	
+	private Boolean verified;
 
 	@Size(min = 8, max = 128)
 	private String password;
@@ -56,7 +58,9 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 
-	public User() {}
+	public User() {
+		this.verified = false;
+	}
 	
 	@PrePersist
     protected void onCreate(){
@@ -153,5 +157,14 @@ public class User {
     	}
     	return false;
     }
+
+	public Boolean getVerified() {
+		return verified;
+	}
+
+	public void setVerified(Boolean verified) {
+		this.verified = verified;
+	}
+    
     
 }
