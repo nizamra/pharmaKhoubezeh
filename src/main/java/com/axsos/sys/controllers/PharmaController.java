@@ -250,5 +250,9 @@ public class PharmaController {
 		pharmaServer.deleteById(id);
 		return "redirect:/admin";
 	}
+	@RequestMapping("/pharmaCreate")
+	public String pharmaCreate(@ModelAttribute("newUser")Product product) {
+		return "pharmacyCreate.jsp";
+	}
 
 }
