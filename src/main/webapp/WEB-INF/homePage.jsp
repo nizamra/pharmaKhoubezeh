@@ -83,7 +83,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="cart.html" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">0</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -171,7 +171,7 @@
           </div>
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
             <a href="shop-single.html"> <img class="vw"  src="imgs/product_05.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+            <h3 class="text-dark"><a href="shop-single.html">CLA Core</a></h3>
             <p class="price">$120.00</p>
           </div>
 
@@ -214,25 +214,25 @@
             <div class="nonloop-block-3 owl-carousel">
 
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="images/product_03.png" alt="Image"></a>
+                <a href="shop-single.html"> <img src="imgs/product_03.png" alt="Image"></a>
                 <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
                 <p class="price">$120.00</p>
               </div>
 
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="images/product_01.png" alt="Image"></a>
+                <a href="shop-single.html"> <img src="imgs/product_01.png" alt="Image"></a>
                 <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
                 <p class="price">$120.00</p>
               </div>
 
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="images/product_02.png" alt="Image"></a>
+                <a href="shop-single.html"> <img src="imgs/product_02.png" alt="Image"></a>
                 <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
                 <p class="price">$120.00</p>
               </div>
 
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="images/product_04.png" alt="Image"></a>
+                <a href="shop-single.html"> <img src="imgs/product_04.png" alt="Image"></a>
                 <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
                 <p class="price">$120.00</p>
               </div>
@@ -242,7 +242,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -256,7 +256,7 @@
         
               <div class="testimony">
                 <blockquote>
-                  <img src="images/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <img src="imgs/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
                 </blockquote>
 
@@ -302,23 +302,23 @@
       </div>
     </div>
 
-    <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+    <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('imgs/bg_1.jpg');">
               <div class="banner-1-inner align-self-center">
-                <h2>Pharma Products</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+                <h2>Pharma Khobeza Products</h2>
+                <p>Medecine,Skin care products,child care products and beauty products.
                 </p>
               </div>
             </a>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
+            <a href="/all_products" class="banner-1 h-100 d-flex" style="background-image: url('imgs/bg_2.jpg');">
               <div class="banner-1-inner ml-auto  align-self-center">
-                <h2>Rated by Experts</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+                <h2>Pharmacy Trust  </h2>
+                <p>many of trusted pharmacies are connected with us .
                 </p>
               </div>
             </a>
@@ -335,8 +335,8 @@
 
             <div class="block-7">
               <h3 class="footer-heading mb-4">About Us</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quae reiciendis distinctio voluptates
-                sed dolorum excepturi iure eaque, aut unde.</p>
+              <p>Pharma khobeza is a page created to connect the people with the pharmacies
+               around them and make it easier to buy products without the need to move around.</p>
             </div>
 
           </div>
@@ -345,8 +345,7 @@
             <ul class="list-unstyled">
               <li><a href="#">Supplements</a></li>
               <li><a href="#">Vitamins</a></li>
-              <li><a href="#">Diet &amp; Nutrition</a></li>
-              <li><a href="#">Tea &amp; Coffee</a></li>
+             
             </ul>
           </div>
 
@@ -354,9 +353,9 @@
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
+                <li class="address">18 Ersal St. Ramallah, West Bank, Palestine</li>
+                <li class="phone"><a href="tel://2746534">+2 2746534</a></li>
+                <li class="email">pharma.khoubezeh@gmail.com</li>
               </ul>
             </div>
 
@@ -368,9 +367,9 @@
             <p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+              <script>document.write(new Date().getFullYear());</script> All rights reserved |  made
               with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-                class="text-primary">Colorlib</a>
+                class="text-primary">Pharma Khobeza</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>
