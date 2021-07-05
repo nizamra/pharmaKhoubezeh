@@ -254,5 +254,10 @@ public class PharmaController {
 		model.addAttribute("categories", Category.Categories);
 		return "thymeleaf/indexx";
 	}
-
+	
+	@RequestMapping("/pharmacyproducts")
+	public String yourProducts(Model model) {
+		model.addAttribute("products", pharmaServer.findAllProducts());
+		return "pharmacyOwner.jsp";
+	}
 }
