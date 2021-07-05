@@ -1,7 +1,9 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 
 
 
@@ -12,6 +14,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
+<!-- CSS only -->
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
@@ -23,17 +26,7 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
-<style>
-.add{
-width:50%;
-padding-top:25px;
-margin:0 auto;
-display:block;
 
-text-align: center;
-
-}
-</style>
 </head>
 
 <body>
@@ -108,7 +101,7 @@ text-align: center;
           <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
           <h1 style="font-size: 30px;">Welcome <c:out value="${currentUser.username}"></c:out> To Pharma Khobeza</h1>
           <p>
-            <a href="#c4" class="btn btn-primary px-5 py-3">Add product</a>
+            <a href="#" class="btn btn-primary px-5 py-3">Shop Now</a>
           </p>
         </div>
       </div>
@@ -116,42 +109,173 @@ text-align: center;
   </div>
 </div>
 
-<form th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
-		<div class="form-group">
-			<label> Product Name:</label>
-			<input type="text" name="name">
-		</div><br>
-	
-		<div class="form-group">
-			<label>Description:</label>
-			<input type="text" name="description">
-		</div><br>
-		
-		<div class="form-group">
-			<label>Symptoms:</label>
-			<input type="text" name="symptom">
-		</div><br>
-		
-		<div class="form-group">
-			<label>Price:</label>
-			<input type="number" name="price"/>
-		</div><br>
-		
-		<div class="form-group">
-			<label>Category:</label>
-			<select class="form-select padd" name="category">
-				<option th:each="cat: ${categories}"  th:text="${ cat }"/>
-			</select>
-		</div><br>
-		<div class="form-group">
-			<label> photos:</label>
-			 <input type="file" name="image" accept="image/png, image/jpeg" />
-		</div><br>
-		
-		<input type="submit" value="Add Product" class="btn btn-info" />
-	</form><br><br>
+<div class="site-section">
+  <div class="container">
+    <div class="row align-items-stretch section-overlap">
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-primary h-100">
+          <a href="#" class="h-100">
+            <h5>We <br> Deliver anywhere</h5>
+            <p>
+               deliver to all places
+              <strong>You can buy any medicine you want and we will deliver it to you</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap h-100">
+          <a href="#" class="h-100">
+            <h5>Season <br> Sale 50% Off</h5>
+            <p>
+              Sales on all the products 
+              <strong>In the end of the season.</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-warning h-100">
+          <a href="#" class="h-100">
+            <h5>Git <br> A Gift Card</h5>
+            <p>
+              When you buy products above 50$ 
+              <strong>You git a gift card  of 10$ </strong>
+            </p>
+          </a>
+        </div>
+      </div>
 
-   
+    </div>
+  </div>
+</div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Popular Products</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <c:forEach items="${ products }" var="product">
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="shop-single.html"> <img class="vw"  src="${ product.photosImagePath }" alt="Image"></a>
+            <h3 class="text-dark"><a href="shop-single.html">${ product.name }</a></h3>
+            <p class="price">${ product.price }</p>
+          </div>
+          </c:forEach>
+          
+        </div>
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <a href="shop.html" class="btn btn-primary px-4 py-3">View All Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">New Products</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 owl-carousel">
+
+              <div class="text-center item mb-4">
+                <a href="shop-single.html"> <img src="imgs/product_03.png" alt="Image"></a>
+                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+                <p class="price">$120.00</p>
+              </div>
+
+              <div class="text-center item mb-4">
+                <a href="shop-single.html"> <img src="imgs/product_01.png" alt="Image"></a>
+                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+                <p class="price">$120.00</p>
+              </div>
+
+              <div class="text-center item mb-4">
+                <a href="shop-single.html"> <img src="imgs/product_02.png" alt="Image"></a>
+                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+                <p class="price">$120.00</p>
+              </div>
+
+              <div class="text-center item mb-4">
+                <a href="shop-single.html"> <img src="imgs/product_04.png" alt="Image"></a>
+                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+                <p class="price">$120.00</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Testimonials</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 no-direction owl-carousel">
+        
+              <div class="testimony">
+                <blockquote>
+                  <img src="imgs/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
+                </blockquote>
+
+                <p>&mdash; Kelly Holmes</p>
+              </div>
+        
+              <div class="testimony">
+                <blockquote>
+                  <img src="images/person_2.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                    unde.&rdquo;</p>
+                </blockquote>
+              
+                <p>&mdash; Rebecca Morando</p>
+              </div>
+        
+              <div class="testimony">
+                <blockquote>
+                  <img src="images/person_3.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                    unde.&rdquo;</p>
+                </blockquote>
+              
+                <p>&mdash; Lucas Gallone</p>
+              </div>
+        
+              <div class="testimony">
+                <blockquote>
+                  <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                    unde.&rdquo;</p>
+                </blockquote>
+              
+                <p>&mdash; Andrew Neel</p>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">

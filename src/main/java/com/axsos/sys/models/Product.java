@@ -26,7 +26,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Size(min=7, max=66, message="name must be between 7 and 66 characters")
+	@Size(min=2, max=66, message="name must be between 7 and 66 characters")
 	private String name;
 	@Column(nullable = true, length = 64)
 	private String photos;
@@ -40,6 +40,7 @@ public class Product {
 	@Size(min=3,message="Symptoms must be at least 3 characters!")
 	private String symptom;
 	private String category;
+	private String price;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -144,6 +145,14 @@ public class Product {
 
 	public void setPhotos(String photos) {
 		this.photos = photos;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
     
     

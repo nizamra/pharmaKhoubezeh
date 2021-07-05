@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.axsos.sys.models.Category;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
 import com.axsos.sys.models.PharmaRequest;
@@ -173,7 +174,7 @@ public class PharmaController {
 		String uploadDir = "product-photos/" + savedProduct.getId();
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		System.out.println("HELLO");
-		return new RedirectView("/products", true);
+		return new RedirectView("/pharmacy", true);
 	}
 
 	@GetMapping("/products")
@@ -278,5 +279,16 @@ public class PharmaController {
 	@RequestMapping("/emptyCart/{cartId}")
 	public void clear(@PathVariable("cartId") Long clearCart) {
 		pharmaServer.emptyCart(clearCart);
+	}
+	@RequestMapping("/pharmacy")
+	public String pharmaCreate(@ModelAttribute("newUser") Product product, Model model) {
+		model.addAttribute("categories", Category.Categories);
+		return "thymeleaf/indexx";
+	}
+	
+	@RequestMapping("/pharmacyproducts")
+	public String yourProducts(Model model) {
+		model.addAttribute("products", pharmaServer.findAllProducts());
+		return "pharmacyOwner.jsp";
 	}
 }
