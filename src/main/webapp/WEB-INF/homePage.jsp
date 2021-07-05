@@ -136,10 +136,10 @@
       <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
         <div class="banner-wrap bg-warning h-100">
           <a href="#" class="h-100">
-            <h5>Git <br> A Gift Card</h5>
+            <h5>Get <br> A Gift Card</h5>
             <p>
               When you buy products above 50$ 
-              <strong>You git a gift card  of 10$ </strong>
+              <strong>You get a gift card  of 10$ </strong>
             </p>
           </a>
         </div>

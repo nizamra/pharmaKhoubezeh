@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -22,19 +23,26 @@ public class PharmaRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private Boolean done;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User requester;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "carts", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
 	private List<Product> products;
-	
-	
+
 	@Column(updatable = false)
 	private Date createdAt;
 
-	public PharmaRequest() {}
+	public PharmaRequest() {
+		this.done = false;
+	}
+
+	public PharmaRequest(User currentUser) {
+		this.requester = currentUser;
+		this.done = false;
+	}
 
 	public User getRequester() {
 		return requester;
@@ -44,17 +52,33 @@ public class PharmaRequest {
 		this.requester = requester;
 	}
 
-	public List<Product> getProduct() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProduct(List<Product> product) {
+	public void setProducts(List<Product> product) {
 		this.products = product;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
-	
+
+	public Boolean getDone() {
+		return done;
+	}
+
+	public void setDone(Boolean done) {
+		this.done = done;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
 }

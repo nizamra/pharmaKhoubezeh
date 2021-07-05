@@ -2,7 +2,6 @@ package com.axsos.sys.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,13 +18,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
+import com.axsos.sys.models.PharmaRequest;
 import com.axsos.sys.models.Product;
 import com.axsos.sys.models.Role;
 import com.axsos.sys.models.User;
@@ -36,7 +35,7 @@ import com.axsos.sys.validator.UserValidator;
 public class PharmaController {
 	private final PharmaService pharmaServer;
 	private UserValidator userValidator;
-	public String randomNums="";
+	public String randomNums = "";
 
 	public PharmaController(PharmaService xXx, UserValidator userValidator) {
 		pharmaServer = xXx;
@@ -94,11 +93,16 @@ public class PharmaController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		User currentUser = pharmaServer.findByUsername(username);
-		
-		if (currentUser.getVerified()==true) {
+		List<PharmaRequest> carts = currentUser.getPharmaRequests();
+		for (int i = 0; i < carts.size(); i++) {
+			if (carts.get(i).getDone().booleanValue()) {
+				new PharmaRequest(currentUser);
+			}
+		}
+		if (currentUser.getVerified() == true) {
 			model.addAttribute("currentUser", currentUser);
 			return "homePage.jsp";
-		}else {
+		} else {
 			return "redirect:/token";
 		}
 	}
@@ -108,65 +112,65 @@ public class PharmaController {
 		model.addAttribute("search", pharmaServer.searchProduct(product));
 		return "search.jsp";
 	}
-	@RequestMapping("/sendmail/{mailTo}")
-	public String sendEmail(@PathVariable("mailTo") String reciever) {
-		String message = "Hello From pharma khoubezeh team to you all \n Your verification token is: ";
-		randomNums="";
-        Random r = new Random();
-        for (byte i = 0; i<4 ; i++){
-        	randomNums=randomNums+(r.nextInt(9));
-        }
-        message=message+randomNums;
-		System.out.println("sending new mail to... "+reciever+message);
-//		pharmaServer.sendingMail(reciever, message, "Spreading Love");
-		return "redirect:/token";
-	}
+
+	// @RequestMapping("/sendmail/{mailTo}")
+	// public String sendEmail(@PathVariable("mailTo") String reciever) {
+	// String message = "Hello From pharma khoubezeh team to you all \n Your
+	// verification token is: ";
+	// randomNums="";
+	// Random r = new Random();
+	// for (byte i = 0; i<4 ; i++){
+	// randomNums=randomNums+(r.nextInt(9));
+	// }
+	// message=message+randomNums;
+	// System.out.println("sending new mail to... "+reciever+message);
+	// pharmaServer.sendingMail(reciever, message, "Spreading Love");
+	// return "redirect:/token";
+	// }
 	@RequestMapping("/token")
 	public String show() {
 		String message = "Hello From pharma khoubezeh team to you all \n Your verification token is: ";
-		randomNums="";
-        Random r = new Random();
-        for (byte i = 0; i<4 ; i++){
-        	randomNums=randomNums+(r.nextInt(9));
-        }
-        message=message+randomNums;
-        
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		randomNums = "";
+		Random r = new Random();
+		for (byte i = 0; i < 4; i++) {
+			randomNums = randomNums + (r.nextInt(9));
+		}
+		message = message + randomNums;
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		User currentUser = pharmaServer.findByUsername(username);
-        
-        String reciever = currentUser.getEmail();
-		System.out.println("sending new mail to... "+reciever+message);
+		String reciever = currentUser.getEmail();
+		System.out.println("sending new mail to... " + reciever + message);
 		pharmaServer.sendingMail(reciever, message, "Spreading Love");
 		return "gettoken.jsp";
 	}
 
 	@PostMapping("/tokenpost")
 	public String gettingshow(@RequestParam(name = "tokenFromUser") String tokenFromUser) {
-		if(tokenFromUser.equals(randomNums)) {
+		if (tokenFromUser.equals(randomNums)) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			String username = authentication.getName();
 			User currentUser = pharmaServer.findByUsername(username);
 			currentUser.setVerified(true);
 			pharmaServer.updateUser(currentUser);
 			return "redirect:/";
-	}else {
-		System.out.println("going out of tamam... ");
-		return "redirect:/";
+		} else {
+			System.out.println("going out of tamam... ");
+			return "redirect:/";
+		}
 	}
-	}
-	
+
 	@PostMapping("/products/save")
 	public RedirectView saveProduct(Product product, @RequestParam("image") MultipartFile multipartFile)
 			throws IOException {
-
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		product.setPhotos(fileName);
-
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		product.setOwnerOfProduct(currentUser);
 		Product savedProduct = pharmaServer.saveProduct(product);
-
 		String uploadDir = "product-photos/" + savedProduct.getId();
-
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		System.out.println("HELLO");
 		return new RedirectView("/products", true);
@@ -216,7 +220,6 @@ public class PharmaController {
 			if (roles.get(i).getName().equals("ROLE_ADMIN")) {
 				roles.remove(i);
 			}
-
 		}
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
@@ -247,12 +250,33 @@ public class PharmaController {
 
 	@RequestMapping("/user/delete/{id}")
 	public String deleteUser(@PathVariable("id") Long id) {
-		pharmaServer.deleteById(id);
+		pharmaServer.deleteUserById(id);
 		return "redirect:/admin";
 	}
+
 	@RequestMapping("/pharmaCreate")
-	public String pharmaCreate(@ModelAttribute("newUser")Product product) {
+	public String pharmaCreate(@ModelAttribute("newUser") Product product) {
 		return "pharmacyCreate.jsp";
 	}
 
+	@RequestMapping("/addToCart/{productId}")
+	public void addingCart(@PathVariable("productId") Long productIdToAdd) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		pharmaServer.addToCart(currentUser.getId(), productIdToAdd);
+	}
+
+	@RequestMapping("/removeFromCart/{productId}")
+	public void rmCart(@PathVariable("productId") Long productIdToremove) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		pharmaServer.removeItemCart(currentUser.getId(), productIdToremove);
+	}
+
+	@RequestMapping("/emptyCart/{cartId}")
+	public void clear(@PathVariable("cartId") Long clearCart) {
+		pharmaServer.emptyCart(clearCart);
+	}
 }

@@ -35,7 +35,7 @@ public class User {
 
 	@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters")
 	private String location;
-	
+
 	private Boolean verified;
 
 	@Size(min = 8, max = 128)
@@ -61,15 +61,16 @@ public class User {
 	public User() {
 		this.verified = false;
 	}
-	
+
 	@PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 
 	public String getEmail() {
 		return email;
@@ -138,25 +139,26 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public boolean checkIfAdmin() {
 		List<Role> roles = this.getUserRole();
-		for( int i = 0; i < roles.size(); i++) {
-			if(roles.get(i).getName().equals("ROLE_ADMIN")) {
+		for (int i = 0; i < roles.size(); i++) {
+			if (roles.get(i).getName().equals("ROLE_ADMIN")) {
 				return true;
 			}
 		}
-		return false; 			
-}
-    public boolean checkIfPharmacy() {
-    	List<Role> roles = this.getUserRole();
-    	for (int i = 0; i<roles.size();i++) {
-    		if(roles.get(i).getName().equals("ROLE_PHARMACY")) {
-    			return true;
-    		}
-    	}
-    	return false;
-    }
+		return false;
+	}
+
+	public boolean checkIfPharmacy() {
+		List<Role> roles = this.getUserRole();
+		for (int i = 0; i < roles.size(); i++) {
+			if (roles.get(i).getName().equals("ROLE_PHARMACY")) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public Boolean getVerified() {
 		return verified;
@@ -165,6 +167,9 @@ public class User {
 	public void setVerified(Boolean verified) {
 		this.verified = verified;
 	}
-    
-    
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
 }
