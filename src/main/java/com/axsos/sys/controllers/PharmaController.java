@@ -100,7 +100,13 @@ public class PharmaController {
 		model.addAttribute("search", pharmaServer.searchProduct(product));
 		return "search.jsp";
 	}
-
+	@RequestMapping("/sendmail/{mailTo}")
+	public String sendEmail(@PathVariable("mailTo") String reciever) {
+		System.out.println("sending new mail to... "+reciever);
+		pharmaServer.sendingMail(reciever, "Hello From pharma khoubezeh team to you all", "Spreading Love");
+		return "redirect:/";
+	}
+	
 	@PostMapping("/products/save")
 	public RedirectView saveProduct(Product product, @RequestParam("image") MultipartFile multipartFile)
 			throws IOException {
