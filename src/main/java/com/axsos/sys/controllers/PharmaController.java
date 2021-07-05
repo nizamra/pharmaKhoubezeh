@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -38,13 +40,14 @@ public class PharmaController {
 	}
 
 	@GetMapping("/thymeleaf")
-    String thymeleafPage() {
-        return "thymeleaf/indexx";
-    }
+	String thymeleafPage() {
+		return "thymeleaf/indexx";
+	}
 
 	@RequestMapping("/registration")
 	public String registerForm(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model,@ModelAttribute("user") User user) {
+			@RequestParam(value = "logout", required = false) String logout, Model model,
+			@ModelAttribute("user") User user) {
 		if (error != null) {
 			model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
 		}
@@ -54,25 +57,25 @@ public class PharmaController {
 		model.addAttribute("locations", Location.Locations);
 		return "registrationPage.jsp";
 	}
-	
-    @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
-        userValidator.validate(user, result);
-        if (result.hasErrors()) {
-            return "registrationPage.jsp";
-        }
-        else if(pharmaServer.findByName("ROLE_ADMIN").getUsers().size() < 1) {
-        	pharmaServer.saveUserWithAdminRole(user);
-        	return "redirect:/login";
-        } else {
-            pharmaServer.saveWithUserRole(user);
-            return "redirect:/login";
-        }
-    }
+
+	@PostMapping("/registration")
+	public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+		userValidator.validate(user, result);
+		if (result.hasErrors()) {
+			return "registrationPage.jsp";
+		} else if (pharmaServer.findByName("ROLE_ADMIN").getUsers().size() < 1) {
+			pharmaServer.saveUserWithAdminRole(user);
+			return "redirect:/login";
+		} else {
+			pharmaServer.saveWithUserRole(user);
+			return "redirect:/login";
+		}
+	}
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model,@ModelAttribute("user") User user) {
+			@RequestParam(value = "logout", required = false) String logout, Model model,
+			@ModelAttribute("user") User user) {
 		if (error != null) {
 			model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
 		}
@@ -81,44 +84,47 @@ public class PharmaController {
 		}
 		return "loginPage.jsp";
 	}
-	
-	
+
 	@RequestMapping(value = { "/", "/home" })
-	public String home(Principal principal, Model model) {
-		String username = principal.getName();
+	public String home(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
 		model.addAttribute("currentUser", pharmaServer.findByUsername(username));
+
 		return "homePage.jsp";
+
 	}
-	
+
 	@RequestMapping("/search")
-	public String search(@RequestParam(value="search",required=false) String product,Model model) {
+	public String search(@RequestParam(value = "search", required = false) String product, Model model) {
 		model.addAttribute("search", pharmaServer.searchProduct(product));
 		return "search.jsp";
 	}
-	
+
 	@PostMapping("/products/save")
-    public RedirectView saveProduct(Product product,
-            @RequestParam("image") MultipartFile multipartFile) throws IOException {
-         
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        product.setPhotos(fileName);
-         
-        Product savedProduct = pharmaServer.saveProduct(product);
- 
-        String uploadDir = "product-photos/" + savedProduct.getId();
- 
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        System.out.println("HELLO");
-        return new RedirectView("/products", true);
-    }
-	
+	public RedirectView saveProduct(Product product, @RequestParam("image") MultipartFile multipartFile)
+			throws IOException {
+
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		product.setPhotos(fileName);
+
+		Product savedProduct = pharmaServer.saveProduct(product);
+
+		String uploadDir = "product-photos/" + savedProduct.getId();
+
+		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		System.out.println("HELLO");
+		return new RedirectView("/products", true);
+	}
+
 	@GetMapping("/products")
 	public String showProduct(Model model) {
 		model.addAttribute("product", pharmaServer.findAllProducts());
 		return "thymeleaf/product";
 	}
-	@RequestMapping(value= {"/dashboard"})
-	public String showHome(Principal principal , Model model) {
+
+	@RequestMapping(value = { "/dashboard" })
+	public String showHome(Principal principal, Model model) {
 		String email = principal.getName();
 		User user = pharmaServer.findByEmail(email);
 		model.addAttribute("currentUser", pharmaServer.findByEmail(email));
@@ -129,15 +135,15 @@ public class PharmaController {
 			return "redirect:/home";
 		}
 	}
-	
+
 	@RequestMapping("/admin")
-	public String displayAdmin(Principal principal,Model model) {
+	public String displayAdmin(Principal principal, Model model) {
 		String email = principal.getName();
 		model.addAttribute("currentUser", pharmaServer.findByEmail(email));
-		model.addAttribute("all",pharmaServer.findAllUsers());
+		model.addAttribute("all", pharmaServer.findAllUsers());
 		return "adminPage.jsp";
 	}
-	
+
 	@RequestMapping("user/admin/{id}")
 	public String makeAdmin(@PathVariable("id") Long id) {
 		User user = pharmaServer.getUserById(id);
@@ -146,24 +152,21 @@ public class PharmaController {
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
 	}
-	
-	
-	
+
 	@RequestMapping("/user/demote/{id}")
 	public String demoteAdmin(@PathVariable("id") Long id) {
 		User user = pharmaServer.getUserById(id);
 		List<Role> roles = user.getUserRole();
-		for (int i = 0 ; i < roles.size();i++) {
-			if(roles.get(i).getName().equals("ROLE_ADMIN")) {
+		for (int i = 0; i < roles.size(); i++) {
+			if (roles.get(i).getName().equals("ROLE_ADMIN")) {
 				roles.remove(i);
 			}
-				
+
 		}
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
 	}
-	
-	
+
 	@RequestMapping("user/pharmacy/admin/{id}")
 	public String makePharmacy(@PathVariable("id") Long id) {
 		User user = pharmaServer.getUserById(id);
@@ -172,28 +175,25 @@ public class PharmaController {
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
 	}
-	
-	
-	
+
 	@RequestMapping("/user/pharmacy/demote/{id}")
 	public String demotePharmacy(@PathVariable("id") Long id) {
 		User user = pharmaServer.getUserById(id);
 		List<Role> roles = user.getUserRole();
-		for (int i = 0 ; i < roles.size();i++) {
-			if(roles.get(i).getName().equals("ROLE_PHARMACY")) {
+		for (int i = 0; i < roles.size(); i++) {
+			if (roles.get(i).getName().equals("ROLE_PHARMACY")) {
 				roles.remove(i);
 			}
-				
+
 		}
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
 	}
-	
+
 	@RequestMapping("/user/delete/{id}")
 	public String deleteUser(@PathVariable("id") Long id) {
 		pharmaServer.deleteById(id);
 		return "redirect:/admin";
 	}
-	
-	
+
 }

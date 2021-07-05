@@ -33,9 +33,11 @@
     				<tr>
     					<td><%= user.getUsername() %></td>
     					<td><%= user.getEmail() %></td>
-    					<% if(!user.checkIfAdmin()) { %>
-    						<td><a href="/user/delete/<%= user.getId()%>">Delete</a> || <a href="/user/admin/<%= user.getId()%>">Promote to Admin</a></td>
-    					<% } else { %>
+    					<% if(!user.checkIfAdmin() && !user.checkIfPharmacy()) { %>
+    						<td><a href="/user/delete/<%= user.getId()%>">Delete</a> || <a href="/user/admin/<%= user.getId()%>">Promote to Admin</a> || <a href="/user/pharmacy/admin/<%= user.getId()%>">Promote to Pharmacy</a></td>
+    					<% } if(user.checkIfPharmacy()) { %>	
+    						<td> Pharmacy Status || <a href="/user/pharmacy/demote/<%= user.getId()%>">Demote to User</a></td>
+    					<% } if(user.checkIfAdmin()) { %>
     						<td> Admin Status || <a href="/user/demote/<%= user.getId()%>">Demote to User</a></td>
     					<% } %>
     				</tr>
