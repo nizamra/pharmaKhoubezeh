@@ -144,6 +144,14 @@ public class User {
 		}
 		return false; 			
 }
-    
+    public boolean checkIfPharmacy() {
+    	List<Role> roles = this.getUserRole();
+    	for (int i = 0; i<roles.size();i++) {
+    		if(roles.get(i).getName().equals("ROLE_PHARMACY")) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     
 }

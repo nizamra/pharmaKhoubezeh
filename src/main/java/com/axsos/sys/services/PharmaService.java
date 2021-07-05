@@ -116,6 +116,16 @@ public class PharmaService {
     	
     }
     
+    public boolean checkIfPharmacy(User user) {
+    	List<Role> roles = user.getUserRole();
+    	for (int i = 0; i<roles.size();i++) {
+    		if(roles.get(i).getName().equals("ROLE_PHARMACY")) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
     public List<Role> findAll(){
     	return (List<Role>) repoRole.findAll();
     }
