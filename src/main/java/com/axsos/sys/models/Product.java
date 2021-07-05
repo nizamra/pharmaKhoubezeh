@@ -26,7 +26,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Size(min=7, max=66, message="name must be between 7 and 66 characters")
+	@Size(min=2, max=66, message="name must be between 7 and 66 characters")
 	private String name;
 	@Column(nullable = true, length = 64)
 	private String photos;
