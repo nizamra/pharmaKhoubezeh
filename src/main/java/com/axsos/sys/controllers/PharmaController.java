@@ -372,5 +372,13 @@ public class PharmaController {
 	public String aboutUs() {
 		return "aboutUs.jsp";
 	}
+	
+	
+	@RequestMapping("/gettoken")
+	public String gettoken() {
+		return "gettoken.jsp";
+	}
+	
+	
 
 }
