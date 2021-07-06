@@ -386,5 +386,29 @@ public class PharmaController {
 		model.addAttribute("locationsAll", Location.Locations);
 		return "cart.jsp";
 	}
+	
+	
+	@RequestMapping("/edit")
+	public String edit() {
+		return "edit.jsp";
+	}
+	
+	@RequestMapping("/aboutUs")
+	public String aboutUs() {
+		return "aboutUs.jsp";
+	}
+	
+	
+	@RequestMapping("/gettoken")
+	public String gettoken() {
+		return "gettoken.jsp";
+	}
+	
+	@RequestMapping("/checkout")
+	public String checkout() {
+		return "CheckOut.jsp";
+	}
+	
+	
 
 }
