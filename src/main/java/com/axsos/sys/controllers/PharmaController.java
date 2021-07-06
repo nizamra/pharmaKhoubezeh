@@ -333,7 +333,33 @@ public class PharmaController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return "redirect:/";
 	}
+	@RequestMapping("/allProducts")
+	public String allProducts() {
+		return "allProducts.jsp";
+	}
+	@RequestMapping("/thankyou")
+    public String allProductss() {
+        return "thankyou.jsp";
+    }
+	
+	
+	@RequestMapping("/create")
+	public String pro() {
+		return "thymeleaf/indexx";
+	}
+	
+	@RequestMapping("/showPharm")
+	public String showPro() {
+		return "PharmShowProd.jsp";
+	}
+	
+	
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		return "cart.jsp";
+	}
+
 }

@@ -1,21 +1,17 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-
+<html>
 
 <head>
-  <title>Pharma &mdash; Khobeza</title>
+  <title>Pharma &mdash; Colorlib Template</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
@@ -27,17 +23,7 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
-<style>
-.add{
-width:50%;
-padding-top:25px;
-margin:0 auto;
-display:block;
 
-text-align: center;
-
-}
-</style>
 </head>
 
 <body>
@@ -45,7 +31,7 @@ text-align: center;
   <div class="site-wrap">
 
 
-    <div class="site-navbar py-2">
+        <div class="site-navbar py-2">
 
       <div class="search-wrap">
         <div class="container">
@@ -87,70 +73,56 @@ text-align: center;
       </div>
     </div>
 
-  <div class="site-blocks-cover" style="background-image: url('imgs/pharm1.jpg');">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
-        <div class="site-block-cover-content text-center">
-          <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
-          <h1 style="font-size: 30px;">Welcome <c:out value="${currentUser.username}"></c:out> To Pharma Khobeza</h1>
-          <p>
-            <a href="#c4" class="btn btn-primary px-5 py-3">Add product</a>
-          </p>
-           <p>
-            <a href="#" class="btn btn-primary px-5 py-3">Show all Products </a>
-          </p>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Store</strong></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<form class="add" th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
-				<div class="row justify-content-center">
-				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
-		<div class="form-group">
-			<label> Product Name:</label>
-			<input class="form-control" type="text" name="name">
-		</div><br>
-	
-		<div class="form-group">
-			<label>Description:</label>
-			<input class="form-control" type="text" name="description">
-		</div><br>
-		
-		<div class="form-group">	
-			<label>Symptoms:</label>
-			<input class="form-control" type="text" name="symptom">
-		</div><br>
-		
-		<div class="form-group">
-			<label>Price:</label>
-			<input  class="form-control" type="number" name="price"/>
-		</div><br>
-		
-		<div class="form-group">
-			<label>Category:</label>
-			<select class="form-select padd" name="category">
-				<option th:each="cat: ${categories}"  th:text="${ cat }"/>
-			</select>
-		</div><br>
-		<div class="form-group">
-			<label> photos:</label>
-			 <input type="file" name="image" accept="image/png, image/jpeg" />
-		</div><br>
-		</div>
-		</div>
-		</div>
-		
-		
-		<input type="submit" value="Add Product" class="btn btn-info" />
-	</form><br><br>
+    <div class="site-section">
+      <div class="container">
 
-   
+        <div class="row">
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="shop-single.html"> <img src="imgs/paraflu.jpg" style="width:20vw;" alt="Image"></a>
+            <h3 class="text-dark"><a href="shop-single.html">Paraflu</a></h3>
+            <p class="price">  $55.00</p>
+          </div>
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="shop-single.html"> <img src="imgs/paramol.jpg" style="width:20vw;"  alt="Image"></a>
+            <h3 class="text-dark"><a href="shop-single.html">Paramol</a></h3>
+            <p class="price">$70.00</p>
+          </div>
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="shop-single.html"> <img src="imgs/crocin.jpg" style="width:20vw;"  alt="Image"></a>
+            <h3 class="text-dark"><a href="shop-single.html">crocin</a></h3>
+            <p class="price">$120.00</p>
+          </div>
+        </div>
+        
+        
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
+    
+   <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
@@ -176,7 +148,7 @@ text-align: center;
     </div>
 
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="con">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -206,8 +178,6 @@ text-align: center;
                 <li class="email">pharma.khoubezeh@gmail.com</li>
               </ul>
             </div>
-
-
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">
@@ -227,7 +197,7 @@ text-align: center;
     </footer>
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
+   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -235,7 +205,6 @@ text-align: center;
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
 
-  <script src="js/main.js"></script>
 
 </body>
 

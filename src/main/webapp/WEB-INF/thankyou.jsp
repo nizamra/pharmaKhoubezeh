@@ -1,21 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-
-
+<html>
 <head>
-  <title>Pharma &mdash; Khobeza</title>
+  <title>Pharma &mdash; Colorlib Template</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
@@ -27,17 +22,7 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
-<style>
-.add{
-width:50%;
-padding-top:25px;
-margin:0 auto;
-display:block;
 
-text-align: center;
-
-}
-</style>
 </head>
 
 <body>
@@ -68,7 +53,9 @@ text-align: center;
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="active"><a href="index.html">Home</a></li>
                 
-               
+                
+                  
+                </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#con">Contact</a></li>
               </ul>
@@ -87,102 +74,36 @@ text-align: center;
       </div>
     </div>
 
-  <div class="site-blocks-cover" style="background-image: url('imgs/pharm1.jpg');">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
-        <div class="site-block-cover-content text-center">
-          <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
-          <h1 style="font-size: 30px;">Welcome <c:out value="${currentUser.username}"></c:out> To Pharma Khobeza</h1>
-          <p>
-            <a href="#c4" class="btn btn-primary px-5 py-3">Add product</a>
-          </p>
-           <p>
-            <a href="#" class="btn btn-primary px-5 py-3">Show all Products </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<form class="add" th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
-				<div class="row justify-content-center">
-				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
-		<div class="form-group">
-			<label> Product Name:</label>
-			<input class="form-control" type="text" name="name">
-		</div><br>
-	
-		<div class="form-group">
-			<label>Description:</label>
-			<input class="form-control" type="text" name="description">
-		</div><br>
-		
-		<div class="form-group">	
-			<label>Symptoms:</label>
-			<input class="form-control" type="text" name="symptom">
-		</div><br>
-		
-		<div class="form-group">
-			<label>Price:</label>
-			<input  class="form-control" type="number" name="price"/>
-		</div><br>
-		
-		<div class="form-group">
-			<label>Category:</label>
-			<select class="form-select padd" name="category">
-				<option th:each="cat: ${categories}"  th:text="${ cat }"/>
-			</select>
-		</div><br>
-		<div class="form-group">
-			<label> photos:</label>
-			 <input type="file" name="image" accept="image/png, image/jpeg" />
-		</div><br>
-		</div>
-		</div>
-		</div>
-		
-		
-		<input type="submit" value="Add Product" class="btn btn-info" />
-	</form><br><br>
-
-   
-
-    <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
+    <div class="bg-light py-3">
       <div class="container">
-        <div class="row align-items-stretch">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('imgs/bg_1.jpg');">
-              <div class="banner-1-inner align-self-center">
-                <h2>Pharma Khobeza Products</h2>
-                <p>Medecine,Skin care products,child care products and beauty products.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="/all_products" class="banner-1 h-100 d-flex" style="background-image: url('imgs/bg_2.jpg');">
-              <div class="banner-1-inner ml-auto  align-self-center">
-                <h2>Pharmacy Trust  </h2>
-                <p>many of trusted pharmacies are connected with us .
-                </p>
-              </div>
-            </a>
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
+              class="text-black">Thank You</strong></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-3 text-success"></span>
+            <h2 class="display-3 text-black">Thank you!</h2>
+            <p class="lead mb-5">You order was successfuly completed.</p>
+            <p><a href="shop.html" class="btn btn-md height-auto px-4 py-3 btn-primary">Back to Home</a></p>
           </div>
         </div>
       </div>
     </div>
 
 
-    <footer class="site-footer">
+     <footer class="site-footer" id="con">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 
             <div class="block-7">
-              <h3 class="footer-heading mb-4">About Us</h3>
+              <h3 class="footer-heading mb-4" >About Us</h3>
               <p>Pharma khobeza is a page created to connect the people with the pharmacies
                around them and make it easier to buy products without the need to move around.</p>
             </div>
@@ -226,7 +147,6 @@ text-align: center;
       </div>
     </footer>
   </div>
-
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
