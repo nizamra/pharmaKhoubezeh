@@ -367,5 +367,10 @@ public class PharmaController {
 	public String edit() {
 		return "edit.jsp";
 	}
+	
+	@RequestMapping("/aboutUs")
+	public String aboutUs() {
+		return "aboutUs.jsp";
+	}
 
 }
