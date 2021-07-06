@@ -1,5 +1,7 @@
 package com.axsos.sys.controllers;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
@@ -102,12 +104,25 @@ public class PharmaController {
 		}
 		if (currentUser.getVerified() == true) {
 			model.addAttribute("currentUser", currentUser);
+			model.addAttribute("pharmaAll", pharmaServer.getUser(currentUser.getLocation(), "ROLE_PHARMACY"));
+			model.addAttribute("locationsAll", Location.Locations);
 			return "homePage.jsp";
 		} else {
 			return "redirect:/token";
 		}
 	}
 
+	@RequestMapping("/bylocal/{locat}")
+	public String gotolocat(@PathVariable("locat") String chosenLocal, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		model.addAttribute("currentUser", currentUser);
+		model.addAttribute("pharmaAll", pharmaServer.getUser(chosenLocal, "ROLE_PHARMACY"));
+		model.addAttribute("locationsAll", Location.Locations);
+		return "homePage.jsp";
+		
+	}
 	@RequestMapping("/search")
 	public String search(@RequestParam(value = "search", required = false) String product, Model model) {
 		model.addAttribute("search", pharmaServer.searchProduct(product));
@@ -137,9 +152,11 @@ public class PharmaController {
 			randomNums = randomNums + (r.nextInt(9));
 		}
 		message = message + randomNums;
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		User currentUser = pharmaServer.findByUsername(username);
+		
 		String reciever = currentUser.getEmail();
 		System.out.println("sending new mail to... " + reciever + message);
 		pharmaServer.sendingMail(reciever, message, "Spreading Love");
@@ -280,15 +297,40 @@ public class PharmaController {
 	public void clear(@PathVariable("cartId") Long clearCart) {
 		pharmaServer.emptyCart(clearCart);
 	}
+
 	@RequestMapping("/pharmacy")
 	public String pharmaCreate(@ModelAttribute("newUser") Product product, Model model) {
 		model.addAttribute("categories", Category.Categories);
 		return "thymeleaf/indexx";
 	}
-	
+
 	@RequestMapping("/pharmacyproducts")
 	public String yourProducts(Model model) {
 		model.addAttribute("products", pharmaServer.findAllProducts());
 		return "pharmacyOwner.jsp";
+	}
+
+	@RequestMapping("/sendforall")
+	public String sendEmail() {
+		pharmaServer.getUser("Ramallah", "ROLE_ADMIN");
+		String message = "Hello From pharma khoubezeh team to you all \n Hope your enjoing our presentation";
+
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(
+					new FileReader("D:/codingdojo/potato/pharmaKhoubezeh/src/main/resources/static/imgs/mail.txt"));
+			String line = reader.readLine();
+			while (line != null) {
+				String reciever = line;
+				System.out.println("sending new mail to... " + reciever + message);
+				pharmaServer.sendingMail(reciever, message, "Spreading Love");
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/";
 	}
 }
