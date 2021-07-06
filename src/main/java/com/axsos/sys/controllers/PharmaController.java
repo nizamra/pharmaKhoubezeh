@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,11 +20,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.axsos.sys.models.Category;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
 import com.axsos.sys.models.Product;
@@ -107,7 +106,7 @@ public class PharmaController {
 		}
 	}
 
-	@RequestMapping("/bylocal/{locat}")
+	@RequestMapping("/{locat}")
 	public String gotolocat(@PathVariable("locat") String chosenLocal, Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
@@ -115,6 +114,11 @@ public class PharmaController {
 		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("pharmaAll", pharmaServer.getUser(chosenLocal, "ROLE_PHARMACY"));
 		model.addAttribute("locationsAll", Location.Locations);
+		List<User> theseUsers = pharmaServer.getUser(chosenLocal, "ROLE_PHARMACY");
+		for (User user : theseUsers) {
+			System.out.println(user.getUsername());
+		}
+		
 		return "homePage.jsp";
 		
 	}
@@ -172,20 +176,19 @@ public class PharmaController {
 	}
 	
 	@PostMapping("/products/save")
-	public RedirectView saveProduct(Product product, @RequestParam("image") MultipartFile multipartFile)
-			throws IOException {
-
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		product.setPhotos(fileName);
-
-		Product savedProduct = pharmaServer.saveProduct(product);
-
-		String uploadDir = "product-photos/" + savedProduct.getId();
-
-		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		System.out.println("HELLO");
-		return new RedirectView("/products", true);
-	}
+    public RedirectView saveProduct(Product product, @RequestParam("image") MultipartFile multipartFile)
+            throws IOException {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        product.setPhotos(fileName);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User currentUser = pharmaServer.findByUsername(username);
+        product.setOwnerOfProduct(currentUser);
+        Product savedProduct = pharmaServer.saveProduct(product);
+        String uploadDir = "product-photos/" + savedProduct.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        return new RedirectView("/products", true);
+    }
 
 	@GetMapping("/products")
 	public String showProduct(Model model) {
