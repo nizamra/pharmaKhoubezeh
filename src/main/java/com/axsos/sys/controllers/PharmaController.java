@@ -250,5 +250,11 @@ public class PharmaController {
 		pharmaServer.deleteById(id);
 		return "redirect:/admin";
 	}
+	
+	
+	@RequestMapping("/pharmacies")
+	public String myCart() {
+		return "pharmacies.jsp";
+	}
 
 }
