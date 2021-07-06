@@ -271,6 +271,12 @@ public class PharmaController {
 		pharmaServer.deleteUserById(id);
 		return "redirect:/admin";
 	}
+	
+	
+	@RequestMapping("/pharmacies")
+	public String myCart() {
+		return "pharmacies.jsp";
+	}
 
 	@RequestMapping("/pharmaCreate")
 	public String pharmaCreate(@ModelAttribute("newUser") Product product) {
