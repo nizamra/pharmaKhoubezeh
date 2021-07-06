@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,11 +20,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.axsos.sys.models.Category;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
 import com.axsos.sys.models.Product;
@@ -330,7 +329,10 @@ public class PharmaController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return "redirect:/";
+	}
+	@RequestMapping("/allProducts")
+	public String allProducts() {
+		return "allProducts.jsp";
 	}
 }
