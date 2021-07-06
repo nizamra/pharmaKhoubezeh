@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.axsos.sys.models.Category;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
 import com.axsos.sys.models.Product;
@@ -333,4 +334,9 @@ public class PharmaController {
 
 		return "redirect:/";
 	}
+	@RequestMapping("/thankyou")
+    public String allProducts() {
+        return "thankyou.jsp";
+    }
+	
 }
