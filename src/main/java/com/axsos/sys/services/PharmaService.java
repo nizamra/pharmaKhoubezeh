@@ -101,6 +101,12 @@ public class PharmaService {
 		repoUser.save(user);
 
 	}
+//	public void updateCourse(@Valid Course updatedEvent) {
+//		Course eventToUpdate = getMeACourse(updatedEvent.getId());
+//		eventToUpdate.setName(updatedEvent.getName());
+//		eventToUpdate.setInstructor(updatedEvent.getInstructor());
+//		eventToUpdate.setMaxPeople(updatedEvent.getMaxPeople());
+//		cR.save(eventToUpdate);}
 
 	public void createUser(User user) {
 		repoUser.save(user);

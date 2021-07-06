@@ -182,9 +182,9 @@
 
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-primary btn-lg btn-block"
+                          <a class="btn btn-primary btn-lg btn-block" href="/checkout"
                             onclick="window.location='checkout.html'">Proceed To
-                            Checkout</button>
+                            Checkout</a>
                         </div>
                       </div>
                     </div>

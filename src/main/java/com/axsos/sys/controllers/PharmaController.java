@@ -101,16 +101,39 @@ public class PharmaController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("pharmaAll", pharmaServer.getUser(currentUser.getLocation(), "ROLE_PHARMACY"));
 			model.addAttribute("locationsAll", Location.Locations);
+			
 			List<PharmaRequest> carts = currentUser.getPharmaRequests();
 			if (carts.isEmpty()) {
 				PharmaRequest ss = new PharmaRequest(currentUser);
 				pharmaServer.savePharmaRequest(ss);
 			}
+			
+			
+//			Boolean gotone =false
+			int counter=0;
 			for (int i = 0; i < carts.size(); i++) {
+				counter++;
+				System.out.println("starting for print number: "+carts.get(i) +"print state: "+carts.get(i).getDone().booleanValue());
+				if(counter!=carts.size()-1) {
+					
+				
 				if (carts.get(i).getDone().booleanValue()) {
-					new PharmaRequest(currentUser);
+					System.out.println("print number: "+carts.get(i) +"print state: "+carts.get(i).getDone().booleanValue());
+					continue;
+				}else {
+					System.out.println("in else print number: "+carts.get(i) +"print state: "+carts.get(i).getDone().booleanValue());
+
+				}}else {
+					System.out.println("createnew one asdasdasd");
+//					PharmaRequest ss = new PharmaRequest(currentUser);
+//					pharmaServer.savePharmaRequest(ss);
 				}
+				
+				
 			}
+			
+			
+			
 			return "homePage.jsp";
 		}else {
 			return "redirect:/token";
@@ -359,10 +382,13 @@ public class PharmaController {
 		return "allProducts.jsp";
 	}
 	@RequestMapping("/thankyou")
-    public String allProductss() {
+    public String allProductss(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		model.addAttribute("currentUser", currentUser);
         return "thankyou.jsp";
     }
-	
 	
 	@RequestMapping("/create")
 	public String pro() {
@@ -374,8 +400,6 @@ public class PharmaController {
 		return "PharmShowProd.jsp";
 	}
 	
-	
-	
 	@RequestMapping("/cart")
 	public String cart(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -386,7 +410,6 @@ public class PharmaController {
 		model.addAttribute("locationsAll", Location.Locations);
 		return "cart.jsp";
 	}
-	
 	
 	@RequestMapping("/edit")
 	public String edit() {
@@ -405,10 +428,27 @@ public class PharmaController {
 	}
 	
 	@RequestMapping("/checkout")
-	public String checkout() {
+	public String checkout(@ModelAttribute("user") User user, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		model.addAttribute("currentUser", currentUser);
+		PharmaRequest thisCart = pharmaServer.getUsersUndoneCart(currentUser);
+		model.addAttribute("thisCart", thisCart.getProducts());
+		model.addAttribute("carting", thisCart);
+		model.addAttribute("locationsAll", Location.Locations);
 		return "CheckOut.jsp";
 	}
 	
-	
+	@PostMapping("/addingdata")
+	public String addingdata(@ModelAttribute("user") User user) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		user = pharmaServer.findByUsername(username);
+		
+		pharmaServer.updateUser(user);
+		pharmaServer.emptyCart(pharmaServer.getUsersUndoneCart(user).getId());
+		return "redirect:/thankyou";
+	}
 
 }
