@@ -408,7 +408,14 @@ public class PharmaController {
 	public String checkout() {
 		return "CheckOut.jsp";
 	}
-	
+	@RequestMapping("/viewProduct")
+	public String viewProduct() {
+		return "viewProduct.jsp";
+	}
+	@RequestMapping("/homePageeee")
+	public String homePageeee() {
+		return "homePage.jsp";
+	}
 	
 
 }
