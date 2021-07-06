@@ -192,6 +192,9 @@ public class PharmaService {
 //		cart.getProducts().clear();
 		repoPhReq.save(cart);
 	}
-
-
+	
+	public List<User> getUser(String location, String role) {
+//		return repoUser.getAllUsersFromLocationWithRole(location, role).get(0).getUsername());
+		return repoUser.getAllUsersFromLocationWithRole(location, role);
+	}
 }

@@ -35,6 +35,10 @@ public class User {
 
 	@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters")
 	private String location;
+	@Size(min = 10, max = 56, message = "address must be between 10 and 56 characters")
+	private String address;
+	@Size(min = 10, max = 14)
+	private String phone;
 
 	private Boolean verified;
 
@@ -170,6 +174,22 @@ public class User {
 
 	public Date getCreatedAt() {
 		return createdAt;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }
