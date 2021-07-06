@@ -1,6 +1,6 @@
 
 Khobiza Pharmacy
-Is a website that helps connect buyers with pharmacies near their locations that helps them to get medicine without searching for a nearby pharmacy and going there themselves saving a lot of time and helping people who can’t go there themselves.
+Is a website that helps connect buyers with pharmacies near their locations that helps them to get medicine without searching for a nearby pharmacy and going there themselves saving a lot of time and helping people who canâ€™t go there themselves.
 Group Members:
 1- Salman Khatib
 2- Mohannad Salman
@@ -11,7 +11,7 @@ Group Members:
 
 Registration page
 
-
+![Registration](https://user-images.githubusercontent.com/81506640/124668780-0428d400-deba-11eb-9905-acef5e19e416.PNG)
 
 
 Login page
