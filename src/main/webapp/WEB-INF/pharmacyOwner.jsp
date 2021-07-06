@@ -11,7 +11,7 @@
   <title>Pharma &mdash; Khobeza</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <base href="/">
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 <!-- CSS only -->
@@ -55,24 +55,13 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Store</a></li>
+                <li><a href="/">Home</a></li>
                 <li class="has-children">
-                  <a href="#">Dropdown</a>
+                  <a id="loc">Location</a>
                   <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
-                    
+                  <c:forEach items="${ locationsAll }" var="locate">
+							<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
+						</c:forEach>
                   </ul>
                 </li>
                 <li><a href="about.html">About</a></li>
@@ -161,8 +150,8 @@
         <div class="row">
           <c:forEach items="${ products }" var="product">
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop-single.html"> <img class="vw"  src="${ product.photosImagePath }" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">${ product.name }</a></h3>
+            <a href="/specificproduct/${product.id}"> <img class="vw"  src="${ product.photosImagePath }" alt="Image"></a>
+            <h3 class="text-dark"><a href="/specificproduct/${product.id}">${ product.name }</a></h3>
             <p class="price">${ product.price }</p>
           </div>
           </c:forEach>

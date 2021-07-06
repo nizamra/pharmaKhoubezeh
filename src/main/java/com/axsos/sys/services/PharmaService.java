@@ -167,7 +167,7 @@ public class PharmaService {
 	public PharmaRequest getUsersUndoneCart(User user) {
 		List<PharmaRequest> carts = user.getPharmaRequests();
 		for (int i = 0; i < carts.size(); i++) {
-			if (carts.get(i).getDone().booleanValue()) {
+			if (!carts.get(i).getDone().booleanValue()) {
 				return carts.get(i);
 			}
 		}
@@ -176,7 +176,8 @@ public class PharmaService {
 
 	public void addToCart(Long userId, Long productId) {
 		PharmaRequest cart = getUsersUndoneCart(getUserById(userId));
-		cart.getProducts().add(getProductById(productId));
+		List<Product> lissst = cart.getProducts();
+		lissst.add(getProductById(productId));
 		repoPhReq.save(cart);
 	}
 
@@ -197,4 +198,14 @@ public class PharmaService {
 //		return repoUser.getAllUsersFromLocationWithRole(location, role).get(0).getUsername());
 		return repoUser.getAllUsersFromLocationWithRole(location, role);
 	}
+
+	public void savePharmaRequest(PharmaRequest ss) {
+		repoPhReq.save(ss);
+		
+	}
+
+//	public List<Product> findAllPharmasProducts(Long pharmaId) {
+//		System.out.println("in serv");
+//		return repoProd.findAllByOwnerOfProduct(pharmaId);
+//	}
 }

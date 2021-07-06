@@ -12,21 +12,16 @@
   <title>Pharma &mdash; Khobeza</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <base href="/">
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
   <link rel="stylesheet" href="css/aos.css">
-
   <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
@@ -97,7 +92,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a
-              href="shop.html">Store</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Product name</strong></div>
+              href="shop.html">Store</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">${productShow.name}</strong></div>
         </div>
       </div>
     </div>
@@ -107,18 +102,15 @@
         <div class="row">
           <div class="col-md-5 mr-auto">
             <div class="border text-center">
-              <img src="imgs/product_07_large.png" alt="Image" class="img-fluid p-5">
+              <img src="${productShow.photosImagePath}" alt="Image" class="img-fluid p-5">
             </div>
           </div>
           <div class="col-md-6">
-            <h2 class="text-black">product name</h2>
-            <p>Description </p>
-            
+            <h2 class="text-black">${productShow.name}</h2>
+            <p>${productShow.description} </p>
+            <p><strong class="text-primary h4">${productShow.price} Shekels</strong></p>
+            <p><strong class="text-primary h4">${productShow.symptom}</strong></p>
 
-            <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p>
-
-            
-            
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 220px;">
                 <div class="input-group-prepend">
@@ -132,7 +124,7 @@
               </div>
     
             </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+            <p><a href="/addToCart/${productShow.id}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
 
             <div class="mt-5">
               <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
@@ -188,7 +180,7 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <a href="/all_products" class="banner-1 h-100 d-flex" style="background-image: url('imgs/bg_2.jpg');">
               <div class="banner-1-inner ml-auto  align-self-center">
-                <h2>Pharmacy Trust  </h2>
+                <h2> Pharmacy Trust  </h2>
                 <p>many of trusted pharmacies are connected with us .
                 </p>
               </div>

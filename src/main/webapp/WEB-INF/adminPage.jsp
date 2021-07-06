@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href="/">
 <title>Admin Page</title>
 <style>
 	table{

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -28,8 +29,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
             authorizeRequests()
+            	.antMatchers("/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/index","/pharmacyproducts/**").permitAll()
                 .antMatchers("/static/**", "/registration","/bylocal/**").permitAll()
+                .antMatchers("/pharmacyproducts/**", "/pharmacyproducts/3","/pharmacyproducts/{id}").permitAll()
                 .antMatchers("/css/**", "/imgs/**","/fonts/**","/js/**","/scss/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/css/").permitAll()
+                .antMatchers("/img/").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/*.js","/*.css").permitAll()
                 .antMatchers("/tokenpost").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/pharma/products").access("hasRole('PHARMACY')")
@@ -38,6 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pharma/update").access("hasRole('PHARMACY')")
                 .antMatchers("/pharma/delete").access("hasRole('PHARMACY')")
                 .antMatchers("/pharma/log").access("hasRole('PHARMACY')")
+                .antMatchers("/pharmacyproducts/{id}").access("hasRole('PHARMACY')")
+                .antMatchers("/pharmacyproducts/3").access("hasRole('PHARMACY')")
+                .antMatchers("/pharmacyproducts/**").access("hasRole('PHARMACY')")
+                
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -56,4 +69,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	    registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+	  }
+	
 }

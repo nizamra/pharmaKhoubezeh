@@ -11,13 +11,10 @@
   <title>Pharma &mdash; Khobeza</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- CSS only -->
-
-
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
+  <base href="/">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
@@ -51,13 +48,13 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="index.html" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
+              <a href="/" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li class="has-children">
                   <a id="loc">Location</a>
                   <ul class="dropdown">
@@ -73,7 +70,7 @@
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart.html" class="icons-btn d-inline-block bag">
+            <a href="/cart" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">0</span>
             </a>
@@ -171,7 +168,7 @@
 										</td>
 										<td>${phu.location}</td>
 										
-										<td><a href="/${phu.id}"
+										<td><a href="/pharmacyproducts/${phu.id}"
 											class="btn btn-primary height-auto btn-sm">show all products</a></td>
 									</c:forEach>
 									</tr>

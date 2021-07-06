@@ -9,7 +9,7 @@
         <title>Pharma &mdash; Khobeza</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+		<base href="/">
         <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
         <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -44,30 +44,19 @@
               <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
                   <div class="site-logo">
-                    <a href="index.html" class="js-logo-clone">Pharma</a>
+                    <a href="/" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
                   </div>
                 </div>
                 <div class="main-nav d-none d-lg-block">
                   <nav class="site-navigation text-right text-md-center" role="navigation">
                     <ul class="site-menu js-clone-nav d-none d-lg-block">
-                      <li><a href="index.html">Home</a></li>
-                      <li class="active"><a href="shop.html">Store</a></li>
+                      <li><a href="/">Home</a></li>
                       <li class="has-children">
-                        <a href="#">Dropdown</a>
+                         <a id="loc">Location</a>
                         <ul class="dropdown">
-                          <li><a href="#">Supplements</a></li>
-                          <li class="has-children">
-                            <a href="#">Vitamins</a>
-                            <ul class="dropdown">
-                              <li><a href="#">Supplements</a></li>
-                              <li><a href="#">Vitamins</a></li>
-                              <li><a href="#">Diet &amp; Nutrition</a></li>
-                              <li><a href="#">Tea &amp; Coffee</a></li>
-                            </ul>
-                          </li>
-                          <li><a href="#">Diet &amp; Nutrition</a></li>
-                          <li><a href="#">Tea &amp; Coffee</a></li>
-
+                 			 <c:forEach items="${ locationsAll }" var="locate">
+									<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
+							</c:forEach>
                         </ul>
                       </li>
                       <li><a href="about.html">About</a></li>
@@ -79,7 +68,7 @@
                   <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
                   <a href="cart.html" class="icons-btn d-inline-block bag">
                     <span class="icon-shopping-bag"></span>
-                    <span class="number">2</span>
+                    <span class="number">${ thisCart.size() }</span>
                   </a>
                   <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                       class="icon-menu"></span></a>
@@ -111,19 +100,24 @@
                           <th class="product-name">Product</th>
                           <th class="product-price">Price</th>
                           <th class="product-quantity">Quantity</th>
-                          <th class="product-total">Total</th>
+                         
                           <th class="product-remove">Remove</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
+                        
+                        <c:forEach items="${ thisCart }" var="cartItem">
+							
+						
+                        
                           <td class="product-thumbnail">
-                            <img src="imgs/paramol.jpg" alt="Image" class="img-fluid">
+                            <img src="${cartItem.photosImagePath}" alt="Image" class="img-fluid">
                           </td>
                           <td class="product-name">
-                            <h2 class="h5 text-black">paramol</h2>
+                            <h2 class="h5 text-black">${cartItem.name}</h2>
                           </td>
-                          <td>$55.00</td>
+                          <td>${cartItem.price}</td>
                           <td>
                             <div class="input-group mb-3" style="max-width: 120px;">
                               <div class="input-group-prepend">
@@ -137,34 +131,14 @@
                             </div>
 
                           </td>
-                          <td>$49.00</td>
-                          <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                         
+                          <td><a href="/removeFromCart/${ cartItem.id }" class="btn btn-primary height-auto btn-sm">X</a></td>
+                          
+                          
+                          </c:forEach>
                         </tr>
 
-                        <tr>
-                          <td class="product-thumbnail">
-                            <img src="imgs/product_04.png" alt="Image" class="img-fluid">
-                          </td>
-                          <td class="product-name">
-                            <h2 class="h5 text-black">Bioderma</h2>
-                          </td>
-                          <td>$49.00</td>
-                          <td>
-                            <div class="input-group mb-3" style="max-width: 120px;">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                              </div>
-                              <input type="text" class="form-control text-center" value="1" placeholder=""
-                                aria-label="Example text with button addon" aria-describedby="button-addon1">
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                              </div>
-                            </div>
-
-                          </td>
-                          <td>$49.00</td>
-                          <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                        </tr>
+                        
                       </tbody>
                     </table>
                   </div>
@@ -175,7 +149,7 @@
                 <div class="col-md-6">
                   <div class="row mb-5">
                     <div class="col-md-6">
-                      <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
+                      <a class="btn btn-outline-primary btn-md btn-block" href="/">Continue Shopping</a>
                     </div>
                   </div>
 

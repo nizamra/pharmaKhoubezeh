@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.axsos.sys.models.Category;
 import com.axsos.sys.models.FileUploadUtil;
 import com.axsos.sys.models.Location;
+import com.axsos.sys.models.PharmaRequest;
 import com.axsos.sys.models.Product;
 import com.axsos.sys.models.Role;
 import com.axsos.sys.models.User;
@@ -100,6 +101,16 @@ public class PharmaController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("pharmaAll", pharmaServer.getUser(currentUser.getLocation(), "ROLE_PHARMACY"));
 			model.addAttribute("locationsAll", Location.Locations);
+			List<PharmaRequest> carts = currentUser.getPharmaRequests();
+			if (carts.isEmpty()) {
+				PharmaRequest ss = new PharmaRequest(currentUser);
+				pharmaServer.savePharmaRequest(ss);
+			}
+			for (int i = 0; i < carts.size(); i++) {
+				if (carts.get(i).getDone().booleanValue()) {
+					new PharmaRequest(currentUser);
+				}
+			}
 			return "homePage.jsp";
 		}else {
 			return "redirect:/token";
@@ -187,14 +198,14 @@ public class PharmaController {
         Product savedProduct = pharmaServer.saveProduct(product);
         String uploadDir = "product-photos/" + savedProduct.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        return new RedirectView("/products", true);
+        return new RedirectView("/pharmacyproducts"+currentUser.getId(), true);
     }
 
-	@GetMapping("/products")
-	public String showProduct(Model model) {
-		model.addAttribute("product", pharmaServer.findAllProducts());
-		return "thymeleaf/product";
-	}
+//	@GetMapping("/products")
+//	public String showProduct(Model model) {
+//		model.addAttribute("product", pharmaServer.findAllProducts());
+//		return "thymeleaf/product";
+//	}
 
 	@RequestMapping(value = { "/dashboard" })
 	public String showHome(Principal principal, Model model) {
@@ -234,7 +245,6 @@ public class PharmaController {
 			if (roles.get(i).getName().equals("ROLE_ADMIN")) {
 				roles.remove(i);
 			}
-
 		}
 		pharmaServer.updateUser(user);
 		return "redirect:/admin";
@@ -281,19 +291,21 @@ public class PharmaController {
 	}
 
 	@RequestMapping("/addToCart/{productId}")
-	public void addingCart(@PathVariable("productId") Long productIdToAdd) {
+	public String addingCart(@PathVariable("productId") Long productIdToAdd) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		User currentUser = pharmaServer.findByUsername(username);
 		pharmaServer.addToCart(currentUser.getId(), productIdToAdd);
+		return "redirect:/cart";	
 	}
 
 	@RequestMapping("/removeFromCart/{productId}")
-	public void rmCart(@PathVariable("productId") Long productIdToremove) {
+	public String rmCart(@PathVariable("productId") Long productIdToremove) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		User currentUser = pharmaServer.findByUsername(username);
 		pharmaServer.removeItemCart(currentUser.getId(), productIdToremove);
+		return "redirect:/cart";
 	}
 
 	@RequestMapping("/emptyCart/{cartId}")
@@ -307,10 +319,17 @@ public class PharmaController {
 		return "thymeleaf/indexx";
 	}
 
-	@RequestMapping("/pharmacyproducts")
-	public String yourProducts(Model model) {
-		model.addAttribute("products", pharmaServer.findAllProducts());
+	@RequestMapping("/pharmacyproducts/{id}")
+	public String yourProducts(Model model, @PathVariable("id") Long pharmaId) {
+		User pharmacist = pharmaServer.getUserById(pharmaId);
+		model.addAttribute("products", pharmacist.getProductsOwned());
+		model.addAttribute("locationsAll", Location.Locations);
 		return "pharmacyOwner.jsp";
+	}
+	@RequestMapping("/specificproduct/{id}")
+	public String thisProduct(Model model, @PathVariable("id") Long pharmaId) {
+		model.addAttribute("productShow", pharmaServer.getProductById(pharmaId));
+		return "viewProduct.jsp";
 	}
 
 	@RequestMapping("/sendforall")
@@ -358,7 +377,13 @@ public class PharmaController {
 	
 	
 	@RequestMapping("/cart")
-	public String cart() {
+	public String cart(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		PharmaRequest thisCart = pharmaServer.getUsersUndoneCart(currentUser);
+		model.addAttribute("thisCart", thisCart.getProducts());
+		model.addAttribute("locationsAll", Location.Locations);
 		return "cart.jsp";
 	}
 

@@ -13,4 +13,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 	List<Product> findAll();
 	List<Product> findBySymptomContaining(String search);
 	List<Product> findByCategory(Category category);
+	List<Product> findAllByOwnerOfProduct(Long pharmaId);
+
 }

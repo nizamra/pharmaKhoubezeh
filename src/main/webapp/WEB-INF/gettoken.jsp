@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href="/">
 <link href="/css/loginPage.css" rel="stylesheet">
 <title>Pic Page</title>
 </head>
