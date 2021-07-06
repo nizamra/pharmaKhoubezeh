@@ -11,6 +11,10 @@
 <base href="/">
 <title>Admin Page</title>
 <style>
+	body{
+		background-color: #021700;
+		font-size: 1.5em;
+	}
 	table{
 		border: 1px solid black;
 	}

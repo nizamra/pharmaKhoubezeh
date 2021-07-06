@@ -51,7 +51,8 @@
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="logo">
 						<div class="site-logo">
-						 <a href="index.html" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
+							<a href="index.html" class="js-logo-clone"><img
+								style="width: 10vw; height: 5vw;" src="imgs/logo001.png"></a>
 						</div>
 					</div>
 					<div class="main-nav d-none d-lg-block">
@@ -59,24 +60,15 @@
 							role="navigation">
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
 							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="shop.html">Store</a></li>
-							<li class="has-children"><a href="#">Categories</a>
+							<li class="has-children"><a id="loc">Location</a>
 								<ul class="dropdown">
-									<li><a href="#">Supplements</a></li>
-									<li class="has-children"><a href="#">Vitamins</a>
-										<ul class="dropdown">
-											<li><a href="#">Supplements</a></li>
-											<li><a href="#">Vitamins</a></li>
-											<li><a href="#">Diet &amp; Nutrition</a></li>
-											<li><a href="#">Tea &amp; Coffee</a></li>
-										</ul></li>
-									<li><a href="#">Diet &amp; Nutrition</a></li>
-									<li><a href="#">Tea &amp; Coffee</a></li>
-
+									<c:forEach items="${ locationsAll }" var="locate">
+										<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
+									</c:forEach>
 								</ul></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="contact.html">Contact</a></li>
-							     <li><a href="/logout">logout</a></li>
+							<li><a href="/logout">logout</a></li>
 						</ul>
 						</nav>
 					</div>
@@ -125,9 +117,10 @@
 
 
 										<td>Ramallah</td>
-										
+
 										<td><a href="#"
-											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+											class="btn btn-primary height-auto btn-sm">show all
+												products</a></td>
 									</tr>
 									<tr>
 										<td class="product-name">
@@ -136,11 +129,12 @@
 
 
 										<td>Ramallah</td>
-										
+
 										<td><a href="#"
-											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+											class="btn btn-primary height-auto btn-sm">show all
+												products</a></td>
 									</tr>
-								
+
 								</tbody>
 							</table>
 						</div>

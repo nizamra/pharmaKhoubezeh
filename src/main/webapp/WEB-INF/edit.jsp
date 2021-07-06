@@ -75,11 +75,15 @@
 							role="navigation">
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
 							<li class="active"><a href="index.html">Home</a></li>
-
-
+							<li class="has-children"><a id="loc">Location</a>
+								<ul class="dropdown">
+									<c:forEach items="${ locationsAll }" var="locate">
+										<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
+									</c:forEach>
+								</ul></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="#con">Contact</a></li>
-						     <li><a href="/logout">logout</a></li>
+							<li><a href="/logout">logout</a></li>
 						</ul>
 						</nav>
 					</div>
@@ -121,9 +125,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="title-section text-center col-12" >
-							<h2 class="text-uppercase" style="padding-top:20px;">Edit Product</h2>
-						</div>
+		<div class="title-section text-center col-12">
+			<h2 class="text-uppercase" style="padding-top: 20px;">Edit
+				Product</h2>
+		</div>
 		<form class="add" th:action="@{/products/save}" th:object="${product}"
 			method="post" enctype="multipart/form-data">
 			<div class="row justify-content-center">
@@ -173,8 +178,7 @@
 
 			<input type="submit" value="Add Product" class="btn btn-info" />
 		</form>
-		<br>
-		<br>
+		<br> <br>
 
 
 

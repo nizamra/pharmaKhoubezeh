@@ -60,12 +60,16 @@
 							role="navigation">
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
 							<li class="active"><a href="index.html">Home</a></li>
-
-
+							<li class="has-children"><a id="loc">Location</a>
+								<ul class="dropdown">
+									<c:forEach items="${ locationsAll }" var="locate">
+										<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
+									</c:forEach>
+								</ul></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="#con">Contact</a></li>
 							<li><a href="#">Add product</a></li>
-							     <li><a href="/logout">logout</a></li>
+							<li><a href="/logout">logout</a></li>
 						</ul>
 						</nav>
 					</div>
