@@ -450,5 +450,14 @@ public class PharmaController {
 		pharmaServer.emptyCart(pharmaServer.getUsersUndoneCart(user).getId());
 		return "redirect:/thankyou";
 	}
+	@RequestMapping("/viewProduct")
+	public String viewProduct() {
+		return "viewProduct.jsp";
+	}
+	@RequestMapping("/homePageeee")
+	public String homePageeee() {
+		return "homePage.jsp";
+	}
+	
 
 }
