@@ -335,4 +335,9 @@ public class PharmaController {
 	public String allProducts() {
 		return "allProducts.jsp";
 	}
+	@RequestMapping("/thankyou")
+    public String allProducts() {
+        return "thankyou.jsp";
+    }
+	
 }
