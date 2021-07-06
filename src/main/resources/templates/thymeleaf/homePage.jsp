@@ -1,6 +1,6 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
 
@@ -55,17 +55,10 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="active"><a href="index.html">Home</a></li>
-                
                 <li class="has-children">
                   <a id="loc">Location</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Ramallah</a></li>
-                    <li >
-                      <a href="#">Jenin</a>
-                    </li>
-                    <li><a href="#">Tulkarem</a></li>
-                    <li><a href="#">Jericho</a></li>
-                    
+                  <ul class="dropdown" th:each="prod : ${locationsAll}">
+                    <li th:text="${prod}"><a href="/bylocal/th:text='${prod}'" th:text="${prod}"> </a></li>
                   </ul>
                 </li>
                 <li><a href="about.html">About</a></li>

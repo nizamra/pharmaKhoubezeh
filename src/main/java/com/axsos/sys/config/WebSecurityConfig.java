@@ -28,8 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
             authorizeRequests()
-                .antMatchers("/static/**", "/registration").permitAll()
-                .antMatchers("/css/**", "/imgs/**").permitAll()
+                .antMatchers("/static/**", "/registration","/bylocal/**").permitAll()
+                .antMatchers("/css/**", "/imgs/**","/fonts/**","/js/**","/scss/**").permitAll()
                 .antMatchers("/tokenpost").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/pharma/products").access("hasRole('PHARMACY')")
