@@ -112,8 +112,7 @@
 								<thead>
 									<tr>
 										<th class="product-thumbnail">Pharmacy Name</th>
-										<th class="product-name">Address</th>
-										<th class="product-price">City</th>
+										<th class="product-price">Location</th>
 										<th class="product-total">Action</th>
 									</tr>
 								</thead>

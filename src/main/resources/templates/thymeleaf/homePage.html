@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 
 
-
-<html lang="en">
 
 <head>
   <title>Pharma &mdash; Khobeza</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- CSS only -->
 
+
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -35,7 +34,7 @@
 
 
     <div class="site-navbar py-2">
-    
+
       <div class="search-wrap">
         <div class="container">
           <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
@@ -44,8 +43,8 @@
           </form>
         </div>
       </div>
-    
-     <div class="container">
+
+      <div class="container">
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
@@ -56,27 +55,21 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Store</a></li>
+                
                 <li class="has-children">
-                  <a href="#">Dropdown</a>
+                  <a id="loc">Location</a>
                   <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
+                    <li><a href="#">Ramallah</a></li>
+                    <li >
+                      <a href="#">Jenin</a>
                     </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
+                    <li><a href="#">Tulkarem</a></li>
+                    <li><a href="#">Jericho</a></li>
                     
                   </ul>
                 </li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#con">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -93,87 +86,124 @@
       </div>
     </div>
 
-    <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a
-              href="shop.html">Store</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Product name</strong></div>
+  <div class="site-blocks-cover" style="background-image: url('imgs/pharm1.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+        <div class="site-block-cover-content text-center">
+          <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
+          <h1 style="font-size: 30px;">Welcome <c:out value="${currentUser.username}"></c:out> To Pharma Khobeza</h1>
+          <p>
+            <a href="#pharm" class="btn btn-primary px-5 py-3">Shop Now</a>
+          </p>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="site-section">
+<div class="site-section">
+  <div class="container">
+    <div class="row align-items-stretch section-overlap">
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-primary h-100">
+          <a href="#" class="h-100">
+            <h5>We <br> Deliver anywhere</h5>
+            <p>
+               deliver to all places
+              <strong>You can buy any medicine you want and we will deliver it to you</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap h-100">
+          <a href="#" class="h-100">
+            <h5>Season <br> Sale 50% Off</h5>
+            <p>
+              Sales on all the products 
+              <strong>In the end of the season.</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-warning h-100">
+          <a href="#" class="h-100">
+            <h5>Get <br> A Gift Card</h5>
+            <p>
+              When you buy products above 50$ 
+              <strong>You get a gift card  of 10$ </strong>
+            </p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <div class="site-section" id="pharm">
       <div class="container">
         <div class="row">
-          <div class="col-md-5 mr-auto">
-            <div class="border text-center">
-              <img src="imgs/product_07_large.png" alt="Image" class="img-fluid p-5">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <h2 class="text-black">product name</h2>
-            <p>Description </p>
-            
-
-            <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p>
-
-            
-            
-            <div class="mb-5">
-              <div class="input-group mb-3" style="max-width: 220px;">
-                <div class="input-group-prepend">
-                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                </div>
-                <input type="text" class="form-control text-center" value="1" placeholder=""
-                  aria-label="Example text with button addon" aria-describedby="button-addon1">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                </div>
-              </div>
-    
-            </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
-
-            <div class="mt-5">
-              <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
-              </ul>
-              <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            
-                  <table class="table custom-table">
-            
-                    <tbody>
-                      <tr>
-                        <td>HPIS CODE</td>
-                        <td class="bg-light">999_200_40_0</td>
-                      </tr>
-                      <tr>
-                        <td>HEALTHCARE PROVIDERS ONLY</td>
-                        <td class="bg-light">No</td>
-                      </tr>
-                      <tr>
-                        <td>LATEX FREE</td>
-                        <td class="bg-light">Yes, No</td>
-                      </tr>
-                      <tr>
-                        <td>MEDICATION ROUTE</td>
-                        <td class="bg-light">Topical</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            
-                </div>
-            
-              </div>
-            </div>
-
-    
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Pharmacies</h2>
           </div>
         </div>
+       <a href="#loc" class="btn btn-info">Choose your location</a>
+		      		
+  <div class="site-section">
+			<div class="container">
+				<div class="row mb-5">
+					<form class="col-md-12" method="post">
+						<div class="site-blocks-table">
+							<table class="table table-bordered ">
+								<thead>
+									<tr>
+										<th class="product-thumbnail">Pharmacy Name</th>
+										<th class="product-price">Location</th>
+										<th class="product-total">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="product-name">
+											<h2 class="h5 text-black">Pharmacy name</h2>
+										</td>
+										<td>Ramallah</td>
+										
+										<td><a href="#"
+											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+									</tr>
+									<tr>
+										<td class="product-name">
+											<h2 class="h5 text-black">Pharmacy name</h2>
+										</td>
+
+
+										<td>Ramallah</td>
+										
+										<td><a href="#"
+											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
       </div>
     </div>
 
-     <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
+    
+    
+    
+    
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
@@ -199,7 +229,7 @@
     </div>
 
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="con">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -250,7 +280,7 @@
     </footer>
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
+   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -258,7 +288,6 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
 
-  <script src="js/main.js"></script>
 
 </body>
 
