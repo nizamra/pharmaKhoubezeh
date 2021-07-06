@@ -336,8 +336,26 @@ public class PharmaController {
 		return "allProducts.jsp";
 	}
 	@RequestMapping("/thankyou")
-    public String allProducts() {
+    public String allProductss() {
         return "thankyou.jsp";
     }
 	
+	
+	@RequestMapping("/create")
+	public String pro() {
+		return "thymeleaf/indexx";
+	}
+	
+	@RequestMapping("/showPharm")
+	public String showPro() {
+		return "PharmShowProd.jsp";
+	}
+	
+	
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		return "cart.jsp";
+	}
+
 }

@@ -178,8 +178,6 @@
                 <li class="email">pharma.khoubezeh@gmail.com</li>
               </ul>
             </div>
-
-
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">

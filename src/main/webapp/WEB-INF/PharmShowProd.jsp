@@ -51,40 +51,26 @@
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="logo">
 						<div class="site-logo">
-							<a href="index.html" class="js-logo-clone">Pharma</a>
+							<a href="index.html" class="js-logo-clone"><img
+								style="width: 10vw; height: 5vw;" src="imgs/logo001.png"></a>
 						</div>
 					</div>
 					<div class="main-nav d-none d-lg-block">
 						<nav class="site-navigation text-right text-md-center"
 							role="navigation">
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
-							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="shop.html">Store</a></li>
-							<li class="has-children"><a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">Supplements</a></li>
-									<li class="has-children"><a href="#">Vitamins</a>
-										<ul class="dropdown">
-											<li><a href="#">Supplements</a></li>
-											<li><a href="#">Vitamins</a></li>
-											<li><a href="#">Diet &amp; Nutrition</a></li>
-											<li><a href="#">Tea &amp; Coffee</a></li>
-										</ul></li>
-									<li><a href="#">Diet &amp; Nutrition</a></li>
-									<li><a href="#">Tea &amp; Coffee</a></li>
+							<li class="active"><a href="index.html">Home</a></li>
 
-								</ul></li>
+
 							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="#con">Contact</a></li>
+							<li><a href="#">Add product</a></li>
 						</ul>
 						</nav>
 					</div>
 					<div class="icons">
 						<a href="#" class="icons-btn d-inline-block js-search-open"><span
-							class="icon-search"></span></a> <a href="cart.html"
-							class="icons-btn d-inline-block bag"> <span
-							class="icon-shopping-bag"></span> <span class="number">2</span>
-						</a> <a href="#"
+							class="icon-search"></span></a> <a href="#"
 							class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
 							class="icon-menu"></span></a>
 					</div>
@@ -97,12 +83,72 @@
 				<div class="row">
 					<div class="col-md-12 mb-0">
 						<a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
-							class="text-black">Cart</strong>
+							class="text-black">Store</strong>
 					</div>
 				</div>
 			</div>
 		</div>
 
+		<div class="site-section">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-6 col-lg-4 text-center item mb-4">
+						<a href="shop-single.html"> <img src="imgs/paraflu.jpg"
+							style="width: 20vw; height: 20vw;" alt="Image"></a>
+						<h3 class="text-dark">
+							<a href="shop-single.html">Paraflu</a>
+						</h3>
+						<p class="price">$55.00</p>
+						<p>
+							<a href="#" class="btn btn-primary px-5 py-3">Edit </a>
+						</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 text-center item mb-4">
+						<a href="shop-single.html"> <img src="imgs/paramol.jpg"
+							style="width: 20vw; height: 20vw;" alt="Image"></a>
+						<h3 class="text-dark">
+							<a href="shop-single.html">Paramol</a>
+						</h3>
+						<p class="price">$70.00</p>
+						<p>
+							<a href="#" class="btn btn-primary px-5 py-3">Edit</a>
+						</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 text-center item mb-4">
+						<a href="shop-single.html"> <img src="imgs/crocin.jpg"
+							style="width: 20vw; height: 20vw;" alt="Image"></a>
+						<h3 class="text-dark">
+							<a href="shop-single.html">crocin</a>
+						</h3>
+						<p class="price">$120.00</p>
+						<p>
+							<a href="#" class="btn btn-primary px-5 py-3">Edit</a>
+						</p>
+					</div>
+				</div>
+
+
+				<div class="row mt-5">
+					<div class="col-md-12 text-center">
+						<div class="site-block-27">
+							<ul>
+								<li><a href="#">&lt;</a></li>
+								<li class="active"><span>1</span></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">&gt;</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="title-section text-center col-12">
+			<h2 class="text-uppercase">Customer Purchase History</h2>
+		</div>
 		<div class="site-section">
 			<div class="container">
 				<div class="row mb-5">
@@ -111,35 +157,39 @@
 							<table class="table table-bordered ">
 								<thead>
 									<tr>
-										<th class="product-thumbnail">Pharmacy Name</th>
+										<th class="product-thumbnail">Customer Name</th>
 										<th class="product-price">Location</th>
-										<th class="product-total">Action</th>
+										<th class="product-total">Items</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td class="product-name">
-											<h2 class="h5 text-black">paramol</h2>
+											<h2 class="h5 text-black">User name</h2>
 										</td>
 
 
 										<td>Ramallah</td>
-										
-										<td><a href="#"
-											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+
+										<td class="product-name">
+											<h2 class="h5 text-black">Product</h2>
+										</td>
 									</tr>
 									<tr>
 										<td class="product-name">
-											<h2 class="h5 text-black">paramol</h2>
+											<h2 class="h5 text-black">User name</h2>
 										</td>
 
 
 										<td>Ramallah</td>
-										
-										<td><a href="#"
-											class="btn btn-primary height-auto btn-sm">show all products</a></td>
+
+										<td class="product-name">
+											<h2 class="h5 text-black">Product</h2>
+										</td>
+
+
 									</tr>
-								
+
 								</tbody>
 							</table>
 						</div>
@@ -148,6 +198,7 @@
 
 			</div>
 		</div>
+
 
 		<div class="site-section bg-secondary bg-image"
 			style="background-image: url('imgs/bg_2.jpg');">
@@ -177,7 +228,7 @@
 		</div>
 
 
-		<footer class="site-footer">
+		<footer class="site-footer" id="con">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -209,8 +260,6 @@
 							<li class="email">pharma.khoubezeh@gmail.com</li>
 						</ul>
 					</div>
-
-
 				</div>
 			</div>
 			<div class="row pt-5 mt-5 text-center">
@@ -241,7 +290,6 @@
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/aos.js"></script>
 
-	<script src="js/main.js"></script>
 
 </body>
 
