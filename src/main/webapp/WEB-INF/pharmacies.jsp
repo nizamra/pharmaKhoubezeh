@@ -60,7 +60,7 @@
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
 							<li><a href="index.html">Home</a></li>
 							<li class="active"><a href="shop.html">Store</a></li>
-							<li class="has-children"><a href="#">Dropdown</a>
+							<li class="has-children"><a href="#">Categories</a>
 								<ul class="dropdown">
 									<li><a href="#">Supplements</a></li>
 									<li class="has-children"><a href="#">Vitamins</a>
@@ -76,6 +76,7 @@
 								</ul></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="contact.html">Contact</a></li>
+							     <li><a href="/logout">logout</a></li>
 						</ul>
 						</nav>
 					</div>

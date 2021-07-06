@@ -20,6 +20,7 @@
 </style>
 </head>
 <body>
+	     <h3><a href="/logout">logout</a></h3>
     <h1>Welcome <c:out value="${currentUser.first_name}"></c:out>!</h1>
     <table>
     		<tr>

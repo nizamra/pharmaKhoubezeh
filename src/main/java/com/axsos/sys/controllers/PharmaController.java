@@ -379,6 +379,11 @@ public class PharmaController {
 		return "gettoken.jsp";
 	}
 	
+	@RequestMapping("/checkout")
+	public String checkout() {
+		return "CheckOut.jsp";
+	}
+	
 	
 
 }

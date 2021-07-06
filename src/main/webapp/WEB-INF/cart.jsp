@@ -53,25 +53,12 @@
                       <li><a href="index.html">Home</a></li>
                       <li class="active"><a href="shop.html">Store</a></li>
                       <li class="has-children">
-                        <a href="#">Dropdown</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Supplements</a></li>
-                          <li class="has-children">
-                            <a href="#">Vitamins</a>
-                            <ul class="dropdown">
-                              <li><a href="#">Supplements</a></li>
-                              <li><a href="#">Vitamins</a></li>
-                              <li><a href="#">Diet &amp; Nutrition</a></li>
-                              <li><a href="#">Tea &amp; Coffee</a></li>
-                            </ul>
-                          </li>
-                          <li><a href="#">Diet &amp; Nutrition</a></li>
-                          <li><a href="#">Tea &amp; Coffee</a></li>
-
-                        </ul>
+                        
+                    
                       </li>
                       <li><a href="about.html">About</a></li>
                       <li><a href="contact.html">Contact</a></li>
+                           <li><a href="/logout">logout</a></li>
                     </ul>
                   </nav>
                 </div>

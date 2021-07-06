@@ -68,6 +68,7 @@
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#con">Contact</a></li>
+                    <li><a href="/logout">logout</a></li>
               </ul>
             </nav>
           </div>
