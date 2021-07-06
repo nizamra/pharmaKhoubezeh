@@ -357,5 +357,11 @@ public class PharmaController {
 	public String cart() {
 		return "cart.jsp";
 	}
+	
+	
+	@RequestMapping("/edit")
+	public String edit() {
+		return "edit.jsp";
+	}
 
 }
