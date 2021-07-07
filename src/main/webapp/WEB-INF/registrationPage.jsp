@@ -40,7 +40,7 @@
 	            </div>
 	            <div class="form-group">
 		      			<form:errors path="location"/>
-						<form:select class="form-select padd" path="location">
+						<form:select class="form-select padd form-control" path="location">
 							<option selected>Location</option>
 								<c:forEach items="${ locations }" var="locate">
 							<option value="${ locate }">${ locate}</option>
