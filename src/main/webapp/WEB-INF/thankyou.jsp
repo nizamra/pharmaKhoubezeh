@@ -31,153 +31,136 @@
 
 <body>
 
-	<div class="site-wrap">
+  <div class="site-wrap">
 
 
-		<div class="site-navbar py-2">
+    <div class="site-navbar py-2">
 
-			<div class="search-wrap">
-				<div class="container">
-					<a href="#" class="search-close js-search-close"><span
-						class="icon-close2"></span></a>
-					<form action="#" method="post">
-						<input type="text" class="form-control"
-							placeholder="Search keyword and hit enter...">
-					</form>
-				</div>
-			</div>
+      <div class="search-wrap">
+        <div class="container">
+          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="#" method="post">
+            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          </form>
+        </div>
+      </div>
 
-			<div class="container">
-				<div class="d-flex align-items-center justify-content-between">
-					<div class="logo">
-						<div class="site-logo">
-							<a href="index.html" class="js-logo-clone"><img
-								style="width: 10vw; height: 5vw;" src="imgs/logo001.png"></a>
-						</div>
-					</div>
-					<div class="main-nav d-none d-lg-block">
-						<nav class="site-navigation text-right text-md-center"
-							role="navigation">
-						<ul class="site-menu js-clone-nav d-none d-lg-block">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li class="has-children"><a id="loc">Location</a>
-								<ul class="dropdown">
-									<c:forEach items="${ locationsAll }" var="locate">
-										<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
-									</c:forEach>
-								</ul></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="#con">Contact</a></li>
-							<li><a href="/logout">logout</a></li>
-						</ul>
-						</nav>
-					</div>
-					<div class="icons">
-						<a href="#" class="icons-btn d-inline-block js-search-open"><span
-							class="icon-search"></span></a> <a href="cart.html"
-							class="icons-btn d-inline-block bag"> <span
-							class="icon-shopping-bag"></span> <span class="number">0</span>
-						</a> <a href="#"
-							class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-							class="icon-menu"></span></a>
-					</div>
-				</div>
-			</div>
-		</div>
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a href="index.html" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
+            </div>
+          </div>
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li class="active"><a href="index.html">Home</a></li>
+                
+                
+                  
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#con">Contact</a></li>
+                <li><a href="/logout">logout</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="icons">
+            <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+            <a href="cart.html" class="icons-btn d-inline-block bag">
+              <span class="icon-shopping-bag"></span>
+              <span class="number">0</span>
+            </a>
+            <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
+                class="icon-menu"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="bg-light py-3">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 mb-0">
-						<a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
-							class="text-black">Thank You</strong>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="site-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<span class="icon-check_circle display-3 text-success"></span>
-						<h2 class="display-3 text-black">Thank you!</h2>
-						<p class="lead mb-5">You order was successfuly completed.</p>
-						<p>
-							<a href="shop.html"
-								class="btn btn-md height-auto px-4 py-3 btn-primary">Back to
-								Home</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
+              class="text-black">Thank You</strong></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-3 text-success"></span>
+            <h2 class="display-3 text-black">Thank you!</h2>
+            <p class="lead mb-5">You order was successfuly completed.</p>
+            <p><a href="/" class="btn btn-md height-auto px-4 py-3 btn-primary">Back to Home</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-		<footer class="site-footer" id="con">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+     <footer class="site-footer" id="con">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 
-					<div class="block-7">
-						<h3 class="footer-heading mb-4">About Us</h3>
-						<p>Pharma khobeza is a page created to connect the people with
-							the pharmacies around them and make it easier to buy products
-							without the need to move around.</p>
-					</div>
+            <div class="block-7">
+              <h3 class="footer-heading mb-4" >About Us</h3>
+              <p>Pharma khobeza is a page created to connect the people with the pharmacies
+               around them and make it easier to buy products without the need to move around.</p>
+            </div>
 
-				</div>
-				<div class="col-lg-3 mx-auto mb-5 mb-lg-0">
-					<h3 class="footer-heading mb-4">Quick Links</h3>
-					<ul class="list-unstyled">
-						<li><a href="#">Supplements</a></li>
-						<li><a href="#">Vitamins</a></li>
+          </div>
+          <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+            <h3 class="footer-heading mb-4">Quick Links</h3>
+            <ul class="list-unstyled">
+              <li><a href="#">Supplements</a></li>
+              <li><a href="#">Vitamins</a></li>
+             
+            </ul>
+          </div>
 
-					</ul>
-				</div>
-
-				<div class="col-md-6 col-lg-3">
-					<div class="block-5 mb-5">
-						<h3 class="footer-heading mb-4">Contact Info</h3>
-						<ul class="list-unstyled">
-							<li class="address">18 Ersal St. Ramallah, West Bank,
-								Palestine</li>
-							<li class="phone"><a href="tel://2746534">+2 2746534</a></li>
-							<li class="email">pharma.khoubezeh@gmail.com</li>
-						</ul>
-					</div>
+          <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <ul class="list-unstyled">
+                <li class="address">18 Ersal St. Ramallah, West Bank, Palestine</li>
+                <li class="phone"><a href="tel://2746534">+2 2746534</a></li>
+                <li class="email">pharma.khoubezeh@gmail.com</li>
+              </ul>
+            </div>
 
 
-				</div>
-			</div>
-			<div class="row pt-5 mt-5 text-center">
-				<div class="col-md-12">
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved | made with <i class="icon-heart"
-							aria-hidden="true"></i> by <a href="https://colorlib.com"
-							target="_blank" class="text-primary">Pharma Khobeza</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved |  made
+              with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+                class="text-primary">Pharma Khobeza</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
 
-			</div>
-		</div>
-		</footer>
-	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
 
-	<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 

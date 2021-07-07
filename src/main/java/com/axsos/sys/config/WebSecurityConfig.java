@@ -47,9 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pharma/update").access("hasRole('PHARMACY')")
                 .antMatchers("/pharma/delete").access("hasRole('PHARMACY')")
                 .antMatchers("/pharma/log").access("hasRole('PHARMACY')")
-                .antMatchers("/pharmacyproducts/{id}").access("hasRole('PHARMACY')")
-                .antMatchers("/pharmacyproducts/3").access("hasRole('PHARMACY')")
-                .antMatchers("/pharmacyproducts/**").access("hasRole('PHARMACY')")
+                
                 
                 .anyRequest().authenticated()
                 .and()

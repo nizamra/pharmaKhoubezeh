@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,12 +45,7 @@ public class PharmaController {
 		pharmaServer = xXx;
 		this.userValidator = userValidator;
 	}
-
-	@GetMapping("/thymeleaf")
-	String thymeleafPage() {
-		return "thymeleaf/indexx";
-	}
-
+	
 	@RequestMapping("/registration")
 	public String registerForm(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model,
@@ -149,12 +145,11 @@ public class PharmaController {
 		}
 		message = message + randomNums;
 		System.out.println("sending new mail to... " + reciever + message);
-//		pharmaServer.sendingMail(reciever, message, "Spreading Love");
 		return "redirect:/token";
 	}
 
 	@RequestMapping("/token")
-	public String show() {
+	public String show(Model model) {
 		String message = "Hello From pharma khoubezeh team to you all \n Your verification token is: ";
 		randomNums = "";
 		Random r = new Random();
@@ -168,6 +163,7 @@ public class PharmaController {
 		User currentUser = pharmaServer.findByUsername(username);
 
 		String reciever = currentUser.getEmail();
+		model.addAttribute("currentUser", currentUser);
 		System.out.println("sending new mail to... " + reciever + message);
 		pharmaServer.sendingMail(reciever, message, "Spreading Love");
 		return "gettoken.jsp";
@@ -200,14 +196,8 @@ public class PharmaController {
 		Product savedProduct = pharmaServer.saveProduct(product);
 		String uploadDir = "product-photos/" + savedProduct.getId();
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		return new RedirectView("/pharmacyproducts" + currentUser.getId(), true);
+		return new RedirectView("/pharmacistproducts/" + currentUser.getId(), true);
 	}
-
-//	@GetMapping("/products")
-//	public String showProduct(Model model) {
-//		model.addAttribute("product", pharmaServer.findAllProducts());
-//		return "thymeleaf/product";
-//	}
 
 	@RequestMapping(value = { "/dashboard" })
 	public String showHome(Principal principal, Model model) {
@@ -281,16 +271,6 @@ public class PharmaController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping("/pharmacies")
-	public String pharmacies() {
-		return "pharmacies.jsp";
-	}
-
-	@RequestMapping("/pharmaCreate")
-	public String pharmaCreate(@ModelAttribute("newUser") Product product) {
-		return "pharmacyCreate.jsp";
-	}
-
 	@RequestMapping("/addToCart/{productId}")
 	public String addingCart(@PathVariable("productId") Long productIdToAdd) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -317,6 +297,10 @@ public class PharmaController {
 	@RequestMapping("/pharmacy")
 	public String pharmaCreate(@ModelAttribute("newUser") Product product, Model model) {
 		model.addAttribute("categories", Category.Categories);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		model.addAttribute("currentUser", currentUser);
 		return "thymeleaf/indexx";
 	}
 
@@ -556,24 +540,37 @@ public class PharmaController {
 	}
 
 	@PostMapping("/addingdata")
-	public String addingdata(@ModelAttribute("user") User user) {
+	public String addingdata(@Valid @ModelAttribute("user") User user,BindingResult result) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		user = pharmaServer.findByUsername(username);
-
-		pharmaServer.updateUser(user);
-		pharmaServer.emptyCart(pharmaServer.getUsersUndoneCart(user).getId());
-		return "redirect:/thankyou";
+		User currentUser = pharmaServer.findByUsername(username);
+		if (result.hasErrors()) {
+			return "CheckOut.jsp";
+		} else {
+			pharmaServer.updateUser(currentUser);
+			pharmaServer.emptyCart(pharmaServer.getUsersUndoneCart(currentUser).getId());			
+			return "redirect:/thankyou";
+		}
 	}
-
-	@RequestMapping("/viewProduct")
-	public String viewProduct() {
-		return "viewProduct.jsp";
+	
+	@RequestMapping("/pharmacistproducts/{id}")
+	public String PharmacistProducts(Model model, @PathVariable("id") Long pharmaId) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		User pharmacist = pharmaServer.getUserById(pharmaId);
+		model.addAttribute("products", pharmacist.getProductsOwned());
+		model.addAttribute("locationsAll", Location.Locations);
+		model.addAttribute("currentUser", currentUser);
+		return "pharmacistProducts.jsp";
 	}
-
-	@RequestMapping("/homePageeee")
-	public String homePageeee() {
-		return "homePage.jsp";
+	
+	@RequestMapping("/product/delete/{id}")
+	public String deleteProduct(@PathVariable("id") Long id) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User currentUser = pharmaServer.findByUsername(username);
+		pharmaServer.deleteProductById(id);
+		return "redirect:/pharmacistproducts/"+currentUser.getId();
 	}
-
 }

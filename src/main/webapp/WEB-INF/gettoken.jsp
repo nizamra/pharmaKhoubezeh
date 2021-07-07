@@ -35,11 +35,11 @@ background-attachment: fixed;
         <div class="container">
             <div class="row justify-content-center">
             <div class="title-section text-center col-12">
-            <h2 class="text-uppercase"style="color:white" >Thank you for register</h2>
-            <h6 class="text-uppercase" style="color:white;margin:10px ,10px"> An Email Been sent to :</h6>
+            <h2 class="text-uppercase"style="color:white" >Thank you for registering</h2>
+            <h6 class="text-uppercase" style="color:white;margin:10px ,10px"> An Email has been sent to : ${ currentUser.email } with the verification code</h6>
         </div>
     <form action="tokenpost" method="POST" style="width:40vw; text-align:center">
-        <label for="tokenFromUser" class="form-control" ><b>Insert Your Verification code</b>
+        <label for="tokenFromUser" class="form-control" ><b>Please insert your verification code here!</b>
             </label> <input type="text" id="tokenFromUser"  class="form-control" name="tokenFromUser">
         <input type="hidden" name="${_csrf.parameterName}"
             value="${_csrf.token}" /> <input type="submit" value="Submit Code" class="form-control btn btn-primary submit px-3"style="margin-top:10px;">

@@ -47,13 +47,7 @@
 						<nav class="site-navigation text-right text-md-center"
 							role="navigation">
 						<ul class="site-menu js-clone-nav d-none d-lg-block">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li class="has-children"><a id="loc">Location</a>
-								<ul class="dropdown">
-									<c:forEach items="${ locationsAll }" var="locate">
-										<li value="${ locate }"><a href="/${ locate }"> ${ locate}</a></li>
-									</c:forEach>
-								</ul></li>
+							<li class="active"><a href="/">Home</a></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="#con">Contact</a></li>
 							<li><a href="/logout">logout</a></li>
@@ -93,12 +87,12 @@
 						<h2 class="h3 mb-3 text-black">Contact Information</h2>
 						<div class="p-3 p-lg-5 border">
 							<div class="form-group row"></div>
-							<form:form action="/addingdata" method="POST"
-								modelAttribute="user">
+							<form:form action="/addingdata" method="POST" modelAttribute="user">
 								<div class="form-group row">
 									<div class="col-md-12">
 										<label for="Address" class="text-black">Address <span
 											class="text-danger">*</span></label>
+										<form:errors path="address"/>
 										<form:input type="text" class="form-control" id="Address"
 											path="address" placeholder="Street address" />
 									</div>
@@ -108,6 +102,7 @@
 									<div class="col-md-6">
 										<label for="Phone" class="text-black">Phone <span
 											class="text-danger">*</span></label>
+										<form:errors path="phone"/>
 										<form:input type="text" class="form-control" id="Phone"
 											path="phone" placeholder="Phone Number" />
 									</div>

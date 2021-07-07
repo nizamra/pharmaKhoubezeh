@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,27 +8,19 @@
 
 
 <head>
-<title>Pharma &mdash; Khobeza</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<base href="/">
-<link
-	href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i"
-	rel="stylesheet">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-<!-- CSS only -->
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
-<link rel="stylesheet" href="css/aos.css">
-
-<link rel="stylesheet" href="css/style.css">
+  <title>Pharma &mdash; Khobeza</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <base href="/">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -93,9 +85,18 @@
         <div class="site-block-cover-content text-center">
           <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
           <h1 style="font-size: 30px;">Welcome <c:out value="${currentUser.username}"></c:out> To Pharma Khobeza</h1>
+          <c:choose>
+          <c:when test="${ currentUser.getUserRole().get(currentUser.getUserRole().size() - 1).getId() == 3}">
           <p>
-            <a href="#" class="btn btn-primary px-5 py-3">Shop Now</a>
+            <a href="/pharmacy" class="btn btn-primary px-5 py-3">Add Product</a>
           </p>
+          </c:when>
+          <c:otherwise>
+          <p>
+            <a href="#pharm" class="btn btn-primary px-5 py-3">Shop Now</a>
+          </p>
+          </c:otherwise>
+          </c:choose>
         </div>
       </div>
     </div>
@@ -153,14 +154,18 @@
 
         <div class="row">
           <c:forEach items="${ products }" var="product">
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="/specificproduct/${product.id}"> <img class="vw"  src="${ product.photosImagePath }" alt="Image"></a>
+          <div class="col-sm-6 col-lg-4 text-center item mb-4 push-down">
+            <img class="vw"  src="${ product.photosImagePath }" alt="Image">
             <h3 class="text-dark"><a href="/specificproduct/${product.id}">${ product.name }</a></h3>
             <p class="price">${ product.price }</p>
+            <a href="/product/delete/${ product.id }" class="btn btn-success">Delete</a>
           </div>
           </c:forEach>
           
-    
+        </div>
+      </div>
+    </div>
+
     
     <div class="site-section bg-light">
       <div class="container">
