@@ -318,11 +318,61 @@ public class PharmaController {
 		return "viewProduct.jsp";
 	}
 
-	@RequestMapping("/sendforall")
-	public String sendEmail() {
+	@RequestMapping("/sendforallenjoing")
+	public String sendEmailEnjoing() {
+		String first = "\r\n"
+				+ "         _ \\\\  //     .-.     wWw  wWw  ___    wWw    _oo  wWw  \\\\  //  \r\n"
+				+ "  (OO) .' )(o)(o)   c(O_O)c   (O)  (O) (___)__ (O)_>-(_  \\ (O)_ (o)(o)  \r\n"
+				+ "   ||_/ .' ||  ||  ,'.---.`,  / )  ( \\ (O)(O)  / __)  / _/ / __)||  ||  \r\n"
+				+ "   |   /   |(__)| / /|_|_|\\ \\/ /    \\ \\/  _\\  / (    / /  / (   |(__)|  \r\n"
+				+ "   ||\\ \\   /.--.\\ | \\_____/ || \\____/ || |_))(  _)  / (  (  _)  /.--.\\  \r\n"
+				+ "  (/\\)\\ `.-'    `-'. `---' .`'. `--' .`| |_)) \\ \\_ (   `-.\\ \\_ -'    `- \r\n"
+				+ "       `._)         `-...-'    `-..-'  (.'-'   \\__) `--.._)\\__)         \r\n"
+				+ "";
+		String love = "\r\n"
+				+ "░░▄███▄███▄        \r\n"
+				+ "░░█████████           \r\n"
+				+ "░░▒▀█████▀░           \r\n"
+				+ "░░▒░░▀█▀              \r\n"
+				+ "░░▒░░█░               \r\n"
+				+ "░░▒░█                  \r\n"
+				+ "░░░█                   \r\n"
+				+ "░░█░░░░███████         \r\n"
+				+ "░██░░░██▓▓███▓██▒      \r\n"
+				+ "██░░░█▓▓▓▓▓▓▓█▓████    \r\n"
+				+ "██░░██▓▓▓(◐)▓█▓█▓█     \r\n"
+				+ "███▓▓▓█▓▓▓▓▓█▓█▓▓▓▓█   \r\n"
+				+ "▀██▓▓█░██▓▓▓▓██▓▓▓▓▓█  \r\n"
+				+ "░▀██▀░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█ \r\n"
+				+ "░░░░▒░░░█▓▓▓▓▓█▓▓▓▓▓▓█ \r\n"
+				+ "░░░░▒░░░█▓▓▓▓█▓█▓▓▓▓▓█  \r\n"
+				+ "░▒░░▒░░░█▓▓▓█▓▓▓█▓▓▓▓█  \r\n"
+				+ "░▒░░▒░░░█▓▓▓█░░░█▓▓▓█      \r\n"
+				+ "░▒░░▒░░██▓██░░░██▓▓██      \r\n"
+				+ "████████████████████████   \r\n"
+				+ "█▄─▄███─▄▄─█▄─█─▄█▄─▄▄─█   \r\n"
+				+ "██─██▀█─██─██─█─███─▄█▀█   \r\n"
+				+ "▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀ \r\n";
+		String last = "\r\n"
+				+ "                                                                                                 \r\n"
+				+ " ,dPYb,     ,dPYb,                             ,dPYb,                                  ,dPYb,    \r\n"
+				+ " IP'`Yb     IP'`Yb                             IP'`Yb                                  IP'`Yb    \r\n"
+				+ " I8  8I     I8  8I                             I8  8I                                  I8  8I    \r\n"
+				+ " I8  8bgg,  I8  8'                             I8  8'                                  I8  8'    \r\n"
+				+ " I8 dP\" \"8  I8 dPgg,     ,ggggg,   gg      gg  I8 dP       ,ggg,      ,gggg,   ,ggg,   I8 dPgg,  \r\n"
+				+ " I8d8bggP\"  I8dP\" \"8I   dP\"  \"Y8gggI8      8I  I8dP   88ggi8\" \"8i    d8\"  Yb  i8\" \"8i  I8dP\" \"8I \r\n"
+				+ " I8P' \"Yb,  I8P    I8  i8'    ,8I  I8,    ,8I  I8P    8I  I8, ,8I   dP    dP  I8, ,8I  I8P    I8 \r\n"
+				+ ",d8    `Yb,,d8     I8,,d8,   ,d8' ,d8b,  ,d8b,,d8b,  ,8I  `YbadP' ,dP  ,adP'  `YbadP' ,d8     I8,\r\n"
+				+ "88P      Y888P     `Y8P\"Y8888P\"   8P'\"Y88P\"`Y88P'\"Y88P\"' 888P\"Y8888\"   \"\"Y8d8888P\"Y88888P     `Y8\r\n"
+				+ "                                                                        ,d8I'                    \r\n"
+				+ "                                                                      ,dP'8I                     \r\n"
+				+ "                                                                     ,8\"  8I                     \r\n"
+				+ "                                                                     I8   8I                     \r\n"
+				+ "                                                                     `8, ,8I                     \r\n"
+				+ "                                                                      `Y8P\"                      \r\n"
+				+ "";
 		pharmaServer.getUser("Ramallah", "ROLE_ADMIN");
-		String message = "Hello From pharma khoubezeh team to you all \n Hope your enjoing our presentation";
-
+		String message = "\t Hello From pharma khoubezeh team to you all \n \t Hope you enjoy our presentation \n Here and now in front of your eyes will be the start of our pharma khoubezeh";
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(
@@ -330,7 +380,91 @@ public class PharmaController {
 			String line = reader.readLine();
 			while (line != null) {
 				String reciever = line;
-				System.out.println("sending new mail to... " + reciever + message);
+				message= first+"\n \n"+message+"\n \n"+last+"\n \n"+love;
+				pharmaServer.sendingMail(reciever, message, "Spreading Love");
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/sendfor/{mail}")
+	public String sennhfjkg(@PathVariable("mail") String mail) {
+		String first = "\r\n"
+				+ "         _ \\\\  //     .-.     wWw  wWw  ___    wWw    _oo  wWw  \\\\  //  \r\n"
+				+ "  (OO) .' )(o)(o)   c(O_O)c   (O)  (O) (___)__ (O)_>-(_  \\ (O)_ (o)(o)  \r\n"
+				+ "   ||_/ .' ||  ||  ,'.---.`,  / )  ( \\ (O)(O)  / __)  / _/ / __)||  ||  \r\n"
+				+ "   |   /   |(__)| / /|_|_|\\ \\/ /    \\ \\/  _\\  / (    / /  / (   |(__)|  \r\n"
+				+ "   ||\\ \\   /.--.\\ | \\_____/ || \\____/ || |_))(  _)  / (  (  _)  /.--.\\  \r\n"
+				+ "  (/\\)\\ `.-'    `-'. `---' .`'. `--' .`| |_)) \\ \\_ (   `-.\\ \\_ -'    `- \r\n"
+				+ "       `._)         `-...-'    `-..-'  (.'-'   \\__) `--.._)\\__)         \r\n"
+				+ "";
+		String love = "\r\n"
+				+ "░░▄███▄███▄        \r\n"
+				+ "░░█████████           \r\n"
+				+ "░░▒▀█████▀░           \r\n"
+				+ "░░▒░░▀█▀              \r\n"
+				+ "░░▒░░█░               \r\n"
+				+ "░░▒░█                  \r\n"
+				+ "░░░█                   \r\n"
+				+ "░░█░░░░███████         \r\n"
+				+ "░██░░░██▓▓███▓██▒      \r\n"
+				+ "██░░░█▓▓▓▓▓▓▓█▓████    \r\n"
+				+ "██░░██▓▓▓(◐)▓█▓█▓█     \r\n"
+				+ "███▓▓▓█▓▓▓▓▓█▓█▓▓▓▓█   \r\n"
+				+ "▀██▓▓█░██▓▓▓▓██▓▓▓▓▓█  \r\n"
+				+ "░▀██▀░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█ \r\n"
+				+ "░░░░▒░░░█▓▓▓▓▓█▓▓▓▓▓▓█ \r\n"
+				+ "░░░░▒░░░█▓▓▓▓█▓█▓▓▓▓▓█  \r\n"
+				+ "░▒░░▒░░░█▓▓▓█▓▓▓█▓▓▓▓█  \r\n"
+				+ "░▒░░▒░░░█▓▓▓█░░░█▓▓▓█      \r\n"
+				+ "░▒░░▒░░██▓██░░░██▓▓██      \r\n"
+				+ "████████████████████████   \r\n"
+				+ "█▄─▄███─▄▄─█▄─█─▄█▄─▄▄─█   \r\n"
+				+ "██─██▀█─██─██─█─███─▄█▀█   \r\n"
+				+ "▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀ \r\n";
+		String last = "\r\n"
+				+ "                                                                                                 \r\n"
+				+ " ,dPYb,     ,dPYb,                             ,dPYb,                                  ,dPYb,    \r\n"
+				+ " IP'`Yb     IP'`Yb                             IP'`Yb                                  IP'`Yb    \r\n"
+				+ " I8  8I     I8  8I                             I8  8I                                  I8  8I    \r\n"
+				+ " I8  8bgg,  I8  8'                             I8  8'                                  I8  8'    \r\n"
+				+ " I8 dP\" \"8  I8 dPgg,     ,ggggg,   gg      gg  I8 dP       ,ggg,      ,gggg,   ,ggg,   I8 dPgg,  \r\n"
+				+ " I8d8bggP\"  I8dP\" \"8I   dP\"  \"Y8gggI8      8I  I8dP   88ggi8\" \"8i    d8\"  Yb  i8\" \"8i  I8dP\" \"8I \r\n"
+				+ " I8P' \"Yb,  I8P    I8  i8'    ,8I  I8,    ,8I  I8P    8I  I8, ,8I   dP    dP  I8, ,8I  I8P    I8 \r\n"
+				+ ",d8    `Yb,,d8     I8,,d8,   ,d8' ,d8b,  ,d8b,,d8b,  ,8I  `YbadP' ,dP  ,adP'  `YbadP' ,d8     I8,\r\n"
+				+ "88P      Y888P     `Y8P\"Y8888P\"   8P'\"Y88P\"`Y88P'\"Y88P\"' 888P\"Y8888\"   \"\"Y8d8888P\"Y88888P     `Y8\r\n"
+				+ "                                                                        ,d8I'                    \r\n"
+				+ "                                                                      ,dP'8I                     \r\n"
+				+ "                                                                     ,8\"  8I                     \r\n"
+				+ "                                                                     I8   8I                     \r\n"
+				+ "                                                                     `8, ,8I                     \r\n"
+				+ "                                                                      `Y8P\"                      \r\n"
+				+ "";
+		
+		String message = "Hello From pharma khoubezeh team to you all \n Hope you enjoy our presentation \n Here and now in front of your eyes will be the start of our pharma khoubezeh";
+		
+		message= first+"\n \n"+message+"\n \n"+last+"\n \n"+love;
+	System.out.println(message);
+	pharmaServer.sendingMail(mail, message, "Spreading Love");
+	return "redirect:/";
+	}
+	
+	
+	@RequestMapping("/sendforallthx")
+	public String sendEmail() {
+		pharmaServer.getUser("Ramallah", "ROLE_ADMIN");
+		String message = "Hello From the other side \n you need to keep cuite during the presentation \n so we all can get the intended value";
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(
+					new FileReader("D:/codingdojo/potato/pharmaKhoubezeh/src/main/resources/static/imgs/mail.txt"));
+			String line = reader.readLine();
+			while (line != null) {
+				String reciever = line;
 				pharmaServer.sendingMail(reciever, message, "Spreading Love");
 				line = reader.readLine();
 			}

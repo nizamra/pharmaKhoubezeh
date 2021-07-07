@@ -192,7 +192,8 @@
 										placeholder="Write your notes here..."></textarea>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-lg btn-block">Place Order</button>
+									<button type="submit" class="btn btn-primary btn-lg btn-block">Place
+										Order</button>
 								</div>
 							</form:form>
 
