@@ -64,8 +64,8 @@
 						</c:forEach>
                   </ul>
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/aboutUs">About</a></li>
+                <li><a href="#con">Contact</a></li>
                      <li><a href="/logout">logout</a></li>
               </ul>
             </nav>
@@ -144,7 +144,7 @@
       <div class="container">
         <div class="row">
           <div class="title-section text-center col-12">
-            <h2 class="text-uppercase">Popular Products</h2>
+            <h2 class="text-uppercase">All Products</h2>
           </div>
         </div>
 
@@ -157,15 +157,7 @@
           </div>
           </c:forEach>
           
-        </div>
-        <div class="row mt-5">
-          <div class="col-12 text-center">
-            <a href="shop.html" class="btn btn-primary px-4 py-3">View All Products</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    
     
     <div class="site-section bg-light">
       <div class="container">
@@ -177,30 +169,16 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
-
+			
+			<c:forEach items="${ products }" var="product">
+			
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="imgs/product_03.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
+                <a href="/specificproduct/${product.id}"> <img src="${ product.photosImagePath }" alt="Image"></a>
+                <h3 class="text-dark"><a href="/specificproduct/${product.id}">${ product.name }</a></h3>
+                <p class="price">${ product.price }</p>
               </div>
 
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="imgs/product_01.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="imgs/product_02.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="imgs/product_04.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
+			</c:forEach>
 
             </div>
           </div>
@@ -208,64 +186,7 @@
       </div>
     </div>
     
-    <div class="site-section">
-      <div class="container">
-        <div class="row">
-          <div class="title-section text-center col-12">
-            <h2 class="text-uppercase">Testimonials</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 block-3 products-wrap">
-            <div class="nonloop-block-3 no-direction owl-carousel">
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="imgs/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
-                </blockquote>
-
-                <p>&mdash; Kelly Holmes</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p>&mdash; Rebecca Morando</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_3.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p>&mdash; Lucas Gallone</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p>&mdash; Andrew Neel</p>
-              </div>
-        
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
     <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">
@@ -293,7 +214,7 @@
     </div>
 
 
-    <footer class="site-footer">
+    <footer id="con" class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">

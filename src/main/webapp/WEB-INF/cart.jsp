@@ -106,9 +106,9 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <c:forEach items="${ thisCart }" var="cartItem">
                         <tr>
                         
-                        <c:forEach items="${ thisCart }" var="cartItem">
 							
 						
                         
@@ -136,8 +136,8 @@
                           <td><a href="/removeFromCart/${ cartItem.id }" class="btn btn-primary height-auto btn-sm">X</a></td>
                           
                           
-                          </c:forEach>
                         </tr>
+                          </c:forEach>
 
                         
                       </tbody>

@@ -50,13 +50,9 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Store</a></li>
-                <li class="has-children">
-  
-                </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/aboutUs">About</a></li>
+                <li><a href="specificproduct/${productShow.id}/#con">Contact</a></li>
                      <li><a href="/logout">logout</a></li>
               </ul>
             </nav>
@@ -177,7 +173,7 @@
     </div>
 
 
-    <footer class="site-footer">
+    <footer id="con" class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">

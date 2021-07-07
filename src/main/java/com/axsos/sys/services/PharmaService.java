@@ -59,6 +59,10 @@ public class PharmaService {
 		return repoPhReq.findAll();
 	}
 
+	public User findById(Long id) {
+		return repoUser.findById(id).orElse(null);
+	}
+	
 	public List<Product> searchProduct(String search) {
 		return repoProd.findBySymptomContaining(search);
 	}
@@ -97,16 +101,9 @@ public class PharmaService {
 		return repoUser.findByEmail(email);
 	}
 
-	public void updateUser(User user) {
-		repoUser.save(user);
-
+	public User updateUser(User user) {
+		return repoUser.save(user);
 	}
-//	public void updateCourse(@Valid Course updatedEvent) {
-//		Course eventToUpdate = getMeACourse(updatedEvent.getId());
-//		eventToUpdate.setName(updatedEvent.getName());
-//		eventToUpdate.setInstructor(updatedEvent.getInstructor());
-//		eventToUpdate.setMaxPeople(updatedEvent.getMaxPeople());
-//		cR.save(eventToUpdate);}
 
 	public void createUser(User user) {
 		repoUser.save(user);
@@ -119,7 +116,11 @@ public class PharmaService {
 	public void deleteUserById(Long id) {
 		repoUser.deleteById(id);
 	}
-
+	
+	public void deleteProductById(Long id) {
+		repoProd.deleteById(id);
+	}
+	
 	public boolean checkIfAdmin(User user) {
 		List<Role> roles = user.getUserRole();
 		for (int i = 0; i < roles.size(); i++) {

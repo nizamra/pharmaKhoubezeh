@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 
 
 
@@ -12,7 +12,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <base href="/">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -20,10 +19,7 @@
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
   <link rel="stylesheet" href="css/aos.css">
-
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -48,13 +44,13 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="/" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
+              <a href="index.html" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li class="has-children">
                   <a id="loc">Location</a>
                   <ul class="dropdown">
@@ -65,13 +61,13 @@
                 </li>
                 <li><a href="/aboutUs">About</a></li>
                 <li><a href="#con">Contact</a></li>
-                    <li><a href="/logout">logout</a></li>
+                     <li><a href="/logout">logout</a></li>
               </ul>
             </nav>
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="/cart" class="icons-btn d-inline-block bag">
+            <a href="cart.html" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">0</span>
             </a>
@@ -135,10 +131,10 @@
       <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
         <div class="banner-wrap bg-warning h-100">
           <a href="#" class="h-100">
-            <h5>Get <br> A Gift Card</h5>
+            <h5>Git <br> A Gift Card</h5>
             <p>
               When you buy products above 50$ 
-              <strong>You get a gift card  of 10$ </strong>
+              <strong>You git a gift card  of 10$ </strong>
             </p>
           </a>
         </div>
@@ -148,55 +144,57 @@
   </div>
 </div>
 
-    <div class="site-section" id="pharm">
+    <div class="site-section">
       <div class="container">
         <div class="row">
           <div class="title-section text-center col-12">
-            <h2 class="text-uppercase">Pharmacies</h2>
+            <h2 class="text-uppercase">All Products</h2>
           </div>
         </div>
-       <a href="#loc" class="btn btn-info">Choose your location</a>
-		      		
-  <div class="site-section">
-			<div class="container">
-				<div class="row mb-5">
-					<form class="col-md-12" method="post">
-						<div class="site-blocks-table">
-							<table class="table table-bordered ">
-								<thead>
-									<tr>
-										<th class="product-thumbnail">Pharmacy Name</th>
-										<th class="product-price">Location</th>
-										<th class="product-total">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-									<c:forEach items="${ pharmaAll }" var="phu">
-										<td class="product-name">
-											<h2 class="h5 text-black">${phu.username}</h2>
-										</td>
-										<td>${phu.location}</td>
-										
-										<td><a href="/pharmacyproducts/${phu.id}"
-											class="btn btn-primary height-auto btn-sm">show all products</a></td>
-									</c:forEach>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</form>
-				</div>
 
-			</div>
-		</div>
+        <div class="row">
+          <c:forEach items="${ products }" var="product">
+          <div class="col-sm-6 col-lg-4 text-center item mb-4 push-down">
+            <img class="vw"  src="${ product.photosImagePath }" alt="Image">
+            <h3 class="text-dark"><a href="/specificproduct/${product.id}">${ product.name }</a></h3>
+            <p class="price">${ product.price }</p>
+            <a href="/product/delete/${ product.id }" class="btn btn-success">Delete</a>
+          </div>
+          </c:forEach>
+          
+        </div>
       </div>
     </div>
 
     
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">New Products</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 owl-carousel">
+			
+			<c:forEach items="${ products }" var="product">
+			
+              <div class="text-center item mb-4">
+                <a href="/specificproduct/${product.id}"> <img src="${ product.photosImagePath }" alt="Image"></a>
+                <h3 class="text-dark"><a href="/specificproduct/${product.id}">${ product.name }</a></h3>
+                <p class="price">${ product.price }</p>
+              </div>
+
+			</c:forEach>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
-    
-    
+   
 
     <div class="site-section bg-secondary bg-image" style="background-image: url('imgs/bg_2.jpg');">
       <div class="container">
@@ -224,7 +222,7 @@
     </div>
 
 
-    <footer class="site-footer" id="con">
+    <footer id="con" class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -275,7 +273,7 @@
     </footer>
   </div>
 
-   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -283,6 +281,7 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
 
+  <script src="js/main.js"></script>
 
 </body>
 

@@ -45,13 +45,13 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="index.html" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
+              <a href="/" class="js-logo-clone"><img style="width:10vw;height:5vw;" src="imgs/logo001.png"></a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="about.html">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
            
                 <li><a href="#con">Contact</a></li>
                      <li><a href="/logout">logout</a></li>
