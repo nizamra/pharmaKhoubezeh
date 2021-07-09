@@ -373,6 +373,7 @@ public class PharmaController {
 				+ "";
 		pharmaServer.getUser("Ramallah", "ROLE_ADMIN");
 		String message = "\t Hello From pharma khoubezeh team to you all \n \t Hope you enjoy our presentation \n Here and now in front of your eyes will be the start of our pharma khoubezeh";
+		message= first+"\n \n"+message+"\n \n"+last+"\n \n"+love;
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(
@@ -380,7 +381,7 @@ public class PharmaController {
 			String line = reader.readLine();
 			while (line != null) {
 				String reciever = line;
-				message= first+"\n \n"+message+"\n \n"+last+"\n \n"+love;
+				System.out.println("send email to..." +reciever);
 				pharmaServer.sendingMail(reciever, message, "Spreading Love");
 				line = reader.readLine();
 			}
