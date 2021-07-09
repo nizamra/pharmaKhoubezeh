@@ -223,12 +223,12 @@
 											<tr>
 												<td class="text-black font-weight-bold"><strong>Cart
 														Subtotal</strong></td>
-												<td class="text-black">$12.00</td>
+												<td class="text-black">$69.00</td>
 											</tr>
 											<tr>
 												<td class="text-black font-weight-bold"><strong>Order
 														Total</strong></td>
-												<td class="text-black font-weight-bold"><strong>$12.00</strong></td>
+												<td class="text-black font-weight-bold"><strong>$69.00</strong></td>
 											</tr>
 										</tbody>
 									</table>

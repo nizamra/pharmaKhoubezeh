@@ -92,9 +92,9 @@
           </div>
           <div class="col-md-6">
             <h2 class="text-black">${productShow.name}</h2>
-            <p>${productShow.description} </p>
-            <p><strong class="text-primary h4">${productShow.price} Shekels</strong></p>
-            <p><strong class="text-primary h4">${productShow.symptom}</strong></p>
+            <p>Description: ${productShow.description} </p>
+            <p><strong class="text-primary h4">Price: ${productShow.price} Shekels</strong></p>
+            <p><strong class="text-primary h4">Symptoms: ${productShow.symptom}</strong></p>
 
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 220px;">
